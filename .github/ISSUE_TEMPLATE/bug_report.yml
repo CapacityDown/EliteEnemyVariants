@@ -1,0 +1,49 @@
+name: Bug report / 不具合報告
+description: Report a problem with EliteEnemyVariants / 不具合をご報告ください
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You can prepare a report using Elites > Tools > Report a Problem.
+        Review it and remove any personal information before posting. Nothing is uploaded automatically.
+        レポートはElites > Tools > Report a Problemから準備できます。
+        投稿前に内容を確認し、個人情報が残っている場合は削除してください。自動送信はしません。
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened? / 発生した問題
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / 再現手順
+      placeholder: "1. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual result / 期待した結果と実際の結果
+  - type: input
+    id: version
+    attributes:
+      label: EliteEnemyVariants version / MODバージョン
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Play mode / プレイ環境
+      options:
+        - Single player / ソロ
+        - Multiplayer host / マルチプレイのホスト
+        - Multiplayer participant / マルチプレイの参加者
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Reviewed report / 内容確認済みのレポート
+      description: Paste a reviewed report or attach relevant screenshots. / 確認済みのレポートや関連する画像を添付してください。
