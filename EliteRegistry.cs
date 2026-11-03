@@ -565,6 +565,7 @@ internal static class EliteRegistry
         EliteArchetype.Mentalist => 1.50f,
         EliteArchetype.Oogly => 1.00f,
         EliteArchetype.Peeper => 0.75f,
+        EliteArchetype.Pony => 1.50f,
         EliteArchetype.Reaper => 1.25f,
         EliteArchetype.Robe => 1.75f,
         EliteArchetype.Rugrat => 1.25f,

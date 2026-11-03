@@ -37,6 +37,7 @@ internal static class EnemyAdapterRuntime
             case EliteArchetype.Chef: ChefElitePatches.OnSpawn(state); break;
             case EliteArchetype.Upscream: UpscreamElitePatches.OnSpawn(state); break;
             case EliteArchetype.Rugrat: RugratElitePatches.OnSpawn(state); break;
+            case EliteArchetype.Pony: PonyElitePatches.OnSpawn(state); break;
             case EliteArchetype.Clown:
                 ClownElitePatches.OnSpawn(state);
                 break;
@@ -60,7 +61,7 @@ internal static class EnemyAdapterRuntime
 
     internal static void Tick(EliteState state)
     {
-        // The other 23 adapters are driven by postfixes on their own AI Update
+        // The other adapters are driven by patches on their own AI methods
         // methods, after vanilla has initialized and advanced its state timers.
         switch (state.Archetype)
         {

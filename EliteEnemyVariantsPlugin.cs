@@ -98,6 +98,7 @@ public sealed class EliteEnemyVariantsPlugin : BaseUnityPlugin
             ApplyAdapterPatch(EliteArchetype.Gambit, typeof(GambitElitePatches));
             ApplyAdapterPatch(EliteArchetype.Banger, typeof(BangerElitePatches));
             ApplyAdapterPatch(EliteArchetype.Gnome, typeof(GnomeElitePatches));
+            ApplyAdapterPatch(EliteArchetype.Pony, typeof(PonyElitePatches));
             SceneManager.activeSceneChanged += ActiveSceneChanged;
             Logger.LogInfo($"{PluginName} v{PluginVersion} loaded. Host-only gameplay mode enabled.");
         }

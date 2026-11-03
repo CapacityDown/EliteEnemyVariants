@@ -152,6 +152,12 @@ internal static class EnemyDisplayNameResolver
             return true;
         }
 
+        if (enemy.GetComponent<EnemySnatcher>() != null)
+        {
+            archetype = EliteArchetype.Pony;
+            return true;
+        }
+
         archetype = default;
         return false;
     }
@@ -187,6 +193,7 @@ internal static class EnemyDisplayNameResolver
         EliteArchetype.Gambit => "Gambit",
         EliteArchetype.Banger => "Banger",
         EliteArchetype.Gnome => "Gnome",
+        EliteArchetype.Pony => "Pony",
         _ => "Unknown"
     };
 }

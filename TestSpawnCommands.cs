@@ -25,7 +25,7 @@ internal readonly struct TestEnemyCatalogEntry
 
 internal static class TestEnemyCatalog
 {
-    // Stable alphabetical numbering. Do not reorder within the v4 series.
+    // Existing numbers remain stable; new enemies are appended.
     internal static readonly TestEnemyCatalogEntry[] Entries =
     {
         Entry(1, EliteArchetype.Animal),
@@ -56,7 +56,8 @@ internal static class TestEnemyCatalog
         Entry(26, EliteArchetype.Spewer),
         Entry(27, EliteArchetype.Tick),
         Entry(28, EliteArchetype.Trudge),
-        Entry(29, EliteArchetype.Upscream)
+        Entry(29, EliteArchetype.Upscream),
+        Entry(30, EliteArchetype.Pony)
     };
 
     internal static bool TryResolve(string value, out TestEnemyCatalogEntry entry)

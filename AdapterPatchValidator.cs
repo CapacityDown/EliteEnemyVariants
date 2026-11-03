@@ -128,6 +128,15 @@ internal static class AdapterPatchValidator
                 Methods(typeof(EnemyGnome), "UpdateState", "StateNoticeDelay", "AttackPositionLogic", "StateAttackDone");
                 Methods(typeof(EnemyGnomeDirector), "UpdateState", "CanAttack", "StateAttackSet");
                 break;
+            case EliteArchetype.Pony:
+                Fields(typeof(EnemySnatcher), "playerTarget", "currentState", "stateImpulse", "agentDestination",
+                    "tongueRepositionStartPosition", "tongueRepositionPlayerPosition", "tongueRepositionDestinationTimer",
+                    "attackPauseTimer", "mainAttackCooldownTimer", "tongueAttackRecoveryTimer", "ceilingCooldownTimer");
+                Methods(typeof(EnemySnatcher), "Update", "StateNotice", "FindClosestVisiblePlayerTarget",
+                    "TongueRepositionDestinationPick", "TongueAttackCheck", "StateChase", "CeilingStateGround",
+                    "CeilingStateWatchdog", "SetStateGrabPhysObject", "PlayerVisible", "PlayerAttackCooldownActive",
+                    "SetPlayerTarget", "CeilingJumpTry", "CeilingWanderPathClear", "CeilingScareLanding", "CeilingDrop");
+                break;
         }
 
         Type? dedicatedUpdateType = archetype switch

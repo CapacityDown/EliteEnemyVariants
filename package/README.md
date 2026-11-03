@@ -8,7 +8,7 @@ Elite Enemy Variants randomly converts supported vanilla enemies into a single E
 
 Only the host needs the mod. Unmodded participants experience the Enhanced enemies normally.
 
-The 29 enemies described below are supported. Pony keeps its normal behavior and is not selected for enhancement.
+The 30 enemies described below are supported, including Pony.
 
 For questions, bug reports, or feedback, please use [GitHub Issues](https://github.com/CapacityDown/EliteEnemyVariants/issues). A GitHub account is required to submit an issue.
 
@@ -83,6 +83,7 @@ Orbs dropped by defeated Enhanced enemies are worth 1.5 times their usual value,
 | Mentalist | Before charging, it can spend up to two seconds repositioning to catch visible players and nearby valuables together. It then uses its faster psychic charge and one additional bounded psychic attack. |
 | Oogly | Uses a lower regular flight band, periodically patrols near floor or table height with its gaze parallel to the floor, and retries one failed dive. |
 | Peeper | Applies gaze damage faster and can hand off once to another visible target. |
+| Pony | Favors visible armed players, circles up to 2.5 m to find a clear tongue attack, and can remove one blocking object per pursuit. Can move ahead of a visible moving target on the ceiling before dropping. Before finding anyone, it can also patrol the ceiling for 20–30 seconds, with a 50% chance checked every 10–15 seconds when conditions allow and at least 20 seconds on the ground between patrols. Attack warnings and recovery are preserved. |
 | Reaper | Keeps attacking while searching the last place it saw a player, then checks one nearby corner or side of cover. Stops attacking if it cannot find the player. |
 | Robe | Pursues longer, can re-engage once, and maintains at least 8 m/s toward its target even while unseen. |
 | Rugrat | Selects the highest-value reachable destructible item, approaches it without jumping, and makes one extra throw attempt. While holding an item, can move sideways around cover to find a clear throwing angle. |
@@ -112,7 +113,7 @@ All settings are available through REPOConfig and use the host's values.
 | Key | Default | Range / values | Effect |
 |---|---:|---|---|
 | `General.Enabled` | `true` | `true`, `false` | Master switch for selection and Enhanced behavior. |
-| `General.VanillaEnemiesOnly` | `true` | `true`, `false` | Keeps selection limited to the 29 supported vanilla enemy types. |
+| `General.VanillaEnemiesOnly` | `true` | `true`, `false` | Keeps selection limited to the 30 supported vanilla enemy types. |
 | `General.ExcludeShop` | `true` | `true`, `false` | Disables selection in shop levels. |
 | `General.ExcludeArena` | `true` | `true`, `false` | Disables selection in arena levels. |
 | `General.DebugLog` | `false` | `true`, `false` | Enables verbose diagnostic logging. |
@@ -144,7 +145,7 @@ All settings are available through REPOConfig and use the host's values.
 
 Every enemy section listed below has the same two selection keys.
 
-`Animal`, `Apex Predator`, `Banger`, `Bella`, `Birthday Boy`, `Bowtie`, `Chef`, `Cleanup Crew`, `Clown`, `Elsa`, `Gambit`, `Gnome`, `Headgrab`, `Headman`, `Heart Hugger`, `Hidden`, `Huntsman`, `Loom`, `Mentalist`, `Oogly`, `Peeper`, `Reaper`, `Robe`, `Rugrat`, `Shadow Child`, `Spewer`, `Tick`, `Trudge`, `Upscream`
+`Animal`, `Apex Predator`, `Banger`, `Bella`, `Birthday Boy`, `Bowtie`, `Chef`, `Cleanup Crew`, `Clown`, `Elsa`, `Gambit`, `Gnome`, `Headgrab`, `Headman`, `Heart Hugger`, `Hidden`, `Huntsman`, `Loom`, `Mentalist`, `Oogly`, `Peeper`, `Pony`, `Reaper`, `Robe`, `Rugrat`, `Shadow Child`, `Spewer`, `Tick`, `Trudge`, `Upscream`
 
 | Key | Default | Range / values | Effect |
 |---|---:|---|---|
@@ -206,7 +207,7 @@ Elite Enemy Variants は、対応するバニラ敵を確率で単一の「Enhan
 
 導入が必要なのはホストだけです。MOD未導入の参加者にもEnhanced個体の挙動が通常どおり反映されます。
 
-下記の29種の敵に対応しています。Ponyは通常の挙動を維持し、強化抽選の対象になりません。
+Ponyを含む下記の30種の敵に対応しています。
 
 ご質問、不具合報告、ご意見は[GitHub Issues](https://github.com/CapacityDown/EliteEnemyVariants/issues)からお送りください。投稿にはGitHubアカウントが必要です。
 
@@ -292,6 +293,7 @@ Enhanced個体を倒した際に落とすオーブの金額は通常の1.5倍に
 | Mentalist | 念力を溜める前に、視認したプレイヤーと近くの換金物をまとめて巻き込める位置へ最長2秒移動します。その後、速い溜めと上限付きの追加念力攻撃を行います。 |
 | Oogly | 通常の飛行高度が低くなり、視線を床と平行に保ちながら床・机付近を定期巡回し、失敗した急降下を1度再試行します。 |
 | Peeper | 視線ダメージが速くなり、別の視認中標的へ1度だけ引き継ぎます。 |
+| Pony | 視認中の武装したプレイヤーを優先し、最大2.5mの回り込みで舌の射線を確保します。追跡中に1個だけ遮蔽物を取り除くことがあり、天井からは視認中の移動する標的の先へ回り込んで降下を狙います。未発見時も、条件を満たす間は10～15秒ごとに50%の確率で天井へ移り、20～30秒巡回します。巡回後は地上で20秒以上空けます。攻撃の予兆と回復時間は維持します。 |
 | Reaper | 見失ったプレイヤーの最終目撃地点まで攻撃しながら探索し、さらに近くの角や遮蔽物の脇を1か所確認します。発見できなければ攻撃を解除します。 |
 | Robe | 追跡時間が長くなり、1度だけ再追跡し、プレイヤーに見られていない状態でも標的方向へ最低8 m/sで移動します。 |
 | Rugrat | 到達可能で最も価値の高い破壊可能アイテムを選び、接近中はジャンプせず、投擲を1回追加で試みます。アイテムを持った状態で遮蔽物の左右へ回り込み、投げられる角度を探します。 |
@@ -310,7 +312,7 @@ Enhanced個体を倒した際に落とすオーブの金額は通常の1.5倍に
 | キー | 既定値 | 範囲 / 値 | 効果 |
 |---|---:|---|---|
 | `General.Enabled` | `true` | `true`, `false` | 抽選とEnhanced挙動の全体スイッチです。 |
-| `General.VanillaEnemiesOnly` | `true` | `true`, `false` | 抽選を対応するバニラ敵29種に限定します。 |
+| `General.VanillaEnemiesOnly` | `true` | `true`, `false` | 抽選を対応するバニラ敵30種に限定します。 |
 | `General.ExcludeShop` | `true` | `true`, `false` | ショップレベルで抽選しません。 |
 | `General.ExcludeArena` | `true` | `true`, `false` | アリーナレベルで抽選しません。 |
 | `General.DebugLog` | `false` | `true`, `false` | 詳細な診断ログを有効にします。 |
@@ -342,7 +344,7 @@ Enhanced個体を倒した際に落とすオーブの金額は通常の1.5倍に
 
 次の全敵セクションに共通する2つの抽選キーがあります。
 
-`Animal`, `Apex Predator`, `Banger`, `Bella`, `Birthday Boy`, `Bowtie`, `Chef`, `Cleanup Crew`, `Clown`, `Elsa`, `Gambit`, `Gnome`, `Headgrab`, `Headman`, `Heart Hugger`, `Hidden`, `Huntsman`, `Loom`, `Mentalist`, `Oogly`, `Peeper`, `Reaper`, `Robe`, `Rugrat`, `Shadow Child`, `Spewer`, `Tick`, `Trudge`, `Upscream`
+`Animal`, `Apex Predator`, `Banger`, `Bella`, `Birthday Boy`, `Bowtie`, `Chef`, `Cleanup Crew`, `Clown`, `Elsa`, `Gambit`, `Gnome`, `Headgrab`, `Headman`, `Heart Hugger`, `Hidden`, `Huntsman`, `Loom`, `Mentalist`, `Oogly`, `Peeper`, `Pony`, `Reaper`, `Robe`, `Rugrat`, `Shadow Child`, `Spewer`, `Tick`, `Trudge`, `Upscream`
 
 | キー | 既定値 | 範囲 / 値 | 効果 |
 |---|---:|---|---|

@@ -5,7 +5,7 @@ namespace REPOJP.EliteEnemyVariants;
 
 internal static class EliteMenuPolicy
 {
-    internal const long AllEnemies = (1L << 29) - 1;
+    internal const long AllEnemies = (1L << 30) - 1;
     internal static bool CanEdit(bool ready, bool multiplayer, bool inRoom, bool master) =>
         ready && (inRoom ? master : !multiplayer);
     internal static float ButtonTop(float rolesBottom, float eventsBottom) =>

@@ -31,5 +31,6 @@ internal enum EliteArchetype
     Huntsman,
     Gambit,
     Banger,
-    Gnome
+    Gnome,
+    Pony
 }

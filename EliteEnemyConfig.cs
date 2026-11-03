@@ -214,6 +214,7 @@ internal sealed class EliteEnemyConfig
         OoglyLowPatrolIntervalSeconds = Seconds(config, "Oogly", "LowPatrolIntervalSeconds", 10f, 3f, 60f);
 
         AddExpandedChance(config, EliteArchetype.Peeper);
+        AddExpandedChance(config, EliteArchetype.Pony);
         AddExpandedChance(config, EliteArchetype.Reaper);
 
         AddExpandedChance(config, EliteArchetype.Robe);

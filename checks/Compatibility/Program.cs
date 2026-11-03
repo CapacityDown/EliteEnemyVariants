@@ -90,7 +90,8 @@ foreach (MethodDefinition method in type.Methods.Where(m => m.HasBody))
             Check(field?.FieldType.FullName == parameterType, "injected patch field: " + parameter.Name);
         }
         else if (!parameter.Name.StartsWith("__"))
-            Check(targets[0].Parameters.Any(p => p.Name == parameter.Name && p.ParameterType.FullName == parameterType),
+            Check(targets[0].Parameters.Any(p => p.Name == parameter.Name && (p.ParameterType.FullName == parameterType ||
+                (parameterType == "System.Object" && !p.ParameterType.IsValueType && !p.ParameterType.IsByReference))),
                 "patch parameter: " + patchName + "." + parameter.Name);
     }
     patches++;
@@ -104,7 +105,7 @@ Check((int)ModType("EliteEnemyVariantsCompatibilityApi").Fields.Single(f => f.Na
 Check(!mod.AssemblyReferences.Any(r => r.Name is "RoleShuffle" or "StageRoles" or "StagePhysicsEvents"), "no required cross-mod assembly");
 Check(!mod.GetTypes().SelectMany(t => t.Methods).Any(m => m.CustomAttributes.Any(a => a.AttributeType.Name == "PunRPC")), "no custom client RPC");
 Check(gameTypes.ContainsKey("EnemySnatcher"), "Sunstone game assembly");
-Check(!mod.GetTypeReferences().Any(t => t.Name == "EnemySnatcher"), "Pony left vanilla in migration");
+Check(mod.GetTypeReferences().Any(t => t.Name == "EnemySnatcher"), "Pony integrated with native Sunstone AI");
 var scroll = gameTypes["MenuScrollBox"].Methods.Single(m => m.Name == "Update");
 Check(scroll.Body.Instructions.Any(i => i.Operand is FieldReference f && f.Name == "scrollWheelStep"), "native wheel-step integration");
 var menuClick = menu.GetMemberReferences().OfType<MethodReference>().Where(m => m.Name == "MenuEffectClick").ToArray();
@@ -130,7 +131,29 @@ if (args.Length >= 5)
     foreach (var before in previous.Types.Single(t => t.Name == name).Methods.Where(m => m.HasBody))
     {
         var after = ModType(name).Methods.Single(m => Signature(m) == Signature(before));
-        string Body(MethodDefinition method) => string.Join("\n", method.Body.Instructions.Select(i => i.ToString()));
+        string Body(MethodDefinition method)
+        {
+            var instructions = method.Body.Instructions.ToList();
+            // The only permitted existing-settings change is the new Pony binding.
+            // Normalize labels so appending that binding cannot mask other edits.
+            if (name == "EliteEnemyConfig" && method.Name == ".ctor")
+            {
+                for (int i = instructions.Count - 1; i >= 3; i--)
+                {
+                    if (instructions[i].Operand is not MethodReference call || call.Name != "AddExpandedChance" ||
+                        instructions[i - 1].OpCode != OpCodes.Ldc_I4_S || Convert.ToInt32(instructions[i - 1].Operand) != 29 ||
+                        instructions[i - 2].OpCode != OpCodes.Ldarg_1 || instructions[i - 3].OpCode != OpCodes.Ldarg_0) continue;
+                    instructions.RemoveRange(i - 3, 4);
+                }
+            }
+            string Operand(object? operand) => operand switch
+            {
+                Instruction target => "label:" + instructions.IndexOf(target),
+                Instruction[] targets => string.Join(",", targets.Select(t => "label:" + instructions.IndexOf(t))),
+                _ => operand?.ToString() ?? ""
+            };
+            return string.Join("\n", instructions.Select(i => i.OpCode.Name + " " + Operand(i.Operand)));
+        }
         Check(Body(before) == Body(after), "preserved settings/selection: " + name + "." + before.Name);
     }
     var apiBefore = previous.Types.Single(t => t.Name == "EliteEnemyVariantsCompatibilityApi");

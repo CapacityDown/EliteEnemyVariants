@@ -37,7 +37,7 @@ static class Program
             Check(EliteMenuPolicy.WheelStep(100,bad,10)==0,"invalid scroll travel");
             Check(EliteMenuPolicy.WheelStep(100,100,bad)==0,"invalid scroll handle");
         }
-        Check(Enum.GetValues<EliteArchetype>().Length==29,"all 29 enemies");
+        Check(Enum.GetValues<EliteArchetype>().Length==30,"all 30 enemies");
         long all=Enum.GetValues<EliteArchetype>().Aggregate(0L,(mask,enemy)=>mask|1L<<(int)enemy);
         Check(all==EliteMenuPolicy.AllEnemies,"stable complete mask");
         foreach(EliteArchetype enemy in Enum.GetValues<EliteArchetype>())
@@ -45,7 +45,7 @@ static class Program
             Check(!string.IsNullOrWhiteSpace(EliteGuideCatalog.Description(enemy)),"description "+enemy);
             Check(EliteMenuPolicy.TryDecode(EliteMenuPolicy.Encode(4,1L<<(int)enemy,true,1),4,out long mask,out bool active)&&active&&mask==(1L<<(int)enemy),"round trip "+enemy);
         }
-        foreach(string? bad in new string?[]{null,"","2:4:1:1:0","1:3:1:1:0","1:4:-1:1:0","1:4:536870912:1:0","1:4:1:2:0","1:4:1:1:-1","1:4:1:1:2147483648","1:4:1:1:0:extra",new('x',129)})
+        foreach(string? bad in new string?[]{null,"","2:4:1:1:0","1:3:1:1:0","1:4:-1:1:0","1:4:1073741824:1:0","1:4:1:2:0","1:4:1:1:-1","1:4:1:1:2147483648","1:4:1:1:0:extra",new('x',129)})
             Check(!EliteMenuPolicy.TryDecode(bad,4,out _,out _),"invalid snapshot rejected");
         Check(!EliteMenuPolicy.TryDecode("1:4:1:1:0",0,out _,out _),"missing master rejected");
         Check(EliteMenuPolicy.TryDecode("1:4:0:0:0",4,out long off,out bool disabled)&&off==0&&!disabled,"all disabled snapshot");

@@ -26,6 +26,7 @@ try {
         @{ Project = 'checks\Compatibility\Compatibility.Checks.csproj'; Arguments = $compatibilityArgs },
         @{ Project = 'checks\Menu\Menu.Checks.csproj'; Arguments = @($dll, $gameDll) },
         @{ Project = 'checks\Tactics\Tactics.Checks.csproj'; Arguments = @($gameDll, $dll) },
+        @{ Project = 'checks\Pony\Pony.Checks.csproj'; Arguments = @($gameDll, $dll) },
         @{ Project = 'checks\OrbRewards\OrbRewards.Checks.csproj'; Arguments = @($gameDll) }
     )
     foreach ($suite in $suites) {
