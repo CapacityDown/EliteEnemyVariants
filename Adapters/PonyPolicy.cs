@@ -9,11 +9,14 @@ internal sealed class PonyPolicy
     internal const float InterceptLead = 2f;
     internal const float InterceptDuration = 3f;
     internal const float LandingPause = 1f;
+    internal const float CaptureStayLimit = 10f;
+    internal const float CaptureScanInterval = 0.25f;
     internal float NextPatrolAt;
     internal float GroundReadyAt;
     internal bool CoverUsed;
     internal bool InterceptUsed;
     private float _calmSince = -1f;
+    private float _captureSince = -1f;
 
     internal PonyPolicy(float now, float intervalRoll) => SchedulePatrol(now, intervalRoll);
 
@@ -55,4 +58,17 @@ internal sealed class PonyPolicy
     internal static bool CanReuseFlank(bool locked, bool sameTarget, float targetMotionSquared, float travel) =>
         locked && sameTarget && targetMotionSquared >= 0f && targetMotionSquared < 0.25f &&
         travel >= 0f && travel <= FlankDistance;
+
+    // One fixed window per continuous native capture, never renewed by ticks.
+    internal bool ObserveCeilingCapture(float now, bool active)
+    {
+        if (!active) { _captureSince = -1f; return false; }
+        if (_captureSince < 0f) _captureSince = now;
+        return now >= _captureSince && now - _captureSince < CaptureStayLimit;
+    }
+
+    internal static bool CanCapture(bool attached, bool ready, bool visible, bool tongueFree,
+        bool protectedPlayer, float pause, float recovery, float cooldown) =>
+        attached && ready && visible && tongueFree && !protectedPlayer &&
+        pause <= 0f && recovery <= 0f && cooldown <= 0f;
 }

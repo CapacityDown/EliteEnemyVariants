@@ -56,7 +56,7 @@
   "Enemy.Mentalist": "Si riposiziona fino a 2 s prima di caricare per coinvolgere giocatori visibili e preziosi. Carica psichica più rapida e un attacco aggiuntivo limitato.",
   "Enemy.Oogly": "Vola più basso, pattuglia a volte vicino al pavimento o ai tavoli con sguardo orizzontale e riprova una picchiata fallita.",
   "Enemy.Peeper": "Infligge più rapidamente danni con lo sguardo e può passare una volta a un altro bersaglio visibile.",
-  "Enemy.Pony": "Preferisce giocatori armati visibili, aggira fino a 2,5 m per la lingua e rimuove un ostacolo extra per inseguimento. Intercetta dal soffitto e talvolta lo pattuglia senza bersaglio. Avvisi e recupero invariati.",
+  "Enemy.Pony": "Preferisce giocatori armati visibili, aggira fino a 2,5 m per la lingua e rimuove un ostacolo extra per inseguimento. Intercetta dal soffitto e talvolta lo pattuglia senza bersaglio. Avvisi e recupero invariati. Può afferrare un giocatore dal soffitto, sollevarlo e scagliarlo via; lo lascia andare se manca spazio per il lancio.",
   "Enemy.Reaper": "Attacca cercando nell'ultima posizione vista, poi controlla un angolo o lato di copertura vicino. Smette se non trova il giocatore.",
   "Enemy.Robe": "Insegue più a lungo, può riprendere la caccia una volta e avanza ad almeno 8 m/s anche quando non è osservato.",
   "Enemy.Rugrat": "Sceglie il prezioso distruttibile raggiungibile di maggior valore, si avvicina senza saltare e tenta un lancio extra. Può aggirare coperture con l'oggetto per liberare la traiettoria.",

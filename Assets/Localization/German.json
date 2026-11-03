@@ -56,7 +56,7 @@
   "Enemy.Mentalist": "Positioniert sich vor dem Aufladen bis zu 2 s neu, um sichtbare Spieler und Wertgegenstände gemeinsam zu treffen. Lädt schneller auf und erhält einen begrenzten Zusatzangriff.",
   "Enemy.Oogly": "Fliegt niedriger, patrouilliert zeitweise auf Boden- oder Tischhöhe mit waagerechtem Blick und wiederholt einen verfehlten Sturzflug.",
   "Enemy.Peeper": "Verursacht Blickschaden schneller und kann einmal zu einem anderen sichtbaren Ziel wechseln.",
-  "Enemy.Pony": "Bevorzugt sichtbare bewaffnete Spieler, umgeht bis zu 2,5 m für Zungenangriffe und räumt ein zusätzliches Hindernis pro Jagd weg. Fängt an der Decke ab und patrouilliert dort auch ohne Ziel. Warnung und Erholung bleiben.",
+  "Enemy.Pony": "Bevorzugt sichtbare bewaffnete Spieler, umgeht bis zu 2,5 m für Zungenangriffe und räumt ein zusätzliches Hindernis pro Jagd weg. Fängt an der Decke ab und patrouilliert dort auch ohne Ziel. Warnung und Erholung bleiben. Kann Spieler von der Decke greifen, hochziehen und wegschleudern; lässt sie los, wenn Platz zum Werfen fehlt.",
   "Enemy.Reaper": "Greift beim Absuchen der letzten Sichtposition weiter an und prüft anschließend eine nahe Ecke oder Deckungsseite. Bricht den Angriff ohne Fund ab.",
   "Enemy.Robe": "Verfolgt länger, kann einmal erneut angreifen und bewegt sich auch unbeobachtet mit mindestens 8 m/s auf sein Ziel zu.",
   "Enemy.Rugrat": "Wählt den wertvollsten erreichbaren zerstörbaren Gegenstand, nähert sich ohne Sprünge und versucht einen Zusatzwurf. Kann mit dem Gegenstand seitlich um Deckung gehen, um freie Wurfbahn zu erhalten.",

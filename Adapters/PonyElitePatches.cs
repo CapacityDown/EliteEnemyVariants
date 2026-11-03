@@ -9,7 +9,7 @@ namespace REPOJP.EliteEnemyVariants;
 // All decision patches run on the host. Native state setters retain the tongue
 // handshake, player ownership, telegraphs, damage and spectator/client animation.
 [HarmonyPatch]
-internal static class PonyElitePatches
+internal static partial class PonyElitePatches
 {
     private sealed class Runtime
     {
@@ -31,6 +31,11 @@ internal static class PonyElitePatches
         internal Vector3 FlankPoint;
         internal Vector3 FlankTargetPoint;
         internal PlayerAvatar? FlankTarget;
+        internal float NextCaptureScan;
+        internal readonly PonyThrowCache Throw = new();
+        internal readonly System.Collections.Generic.List<Collider> ThrowColliders = new();
+        internal readonly Collider[] ThrowOverlaps = new Collider[64];
+        internal readonly RaycastHit[] ThrowHits = new RaycastHit[64];
     }
 
     private delegate bool BlockingObject(EnemySnatcher pony, Vector3 origin, Vector3 target, out PhysGrabObject item);
@@ -303,6 +308,16 @@ internal static class PonyElitePatches
         if (!Try(__instance, out EliteState state, out Runtime runtime)) return true;
         try
         {
+            // Extend only the ordinary stay deadline while a native capture is
+            // finishing. Stuns, lost support and navigation failures still win.
+            bool capture = CeilingAttached(__instance) && CeilingCaptureInProgress(__instance);
+            bool protectCapture = runtime.Policy.ObserveCeilingCapture(Time.time, capture);
+            if (protectCapture && Ready(state))
+            {
+                runtime.Patrol = false;
+                __result = false;
+                return false;
+            }
             if (!runtime.Patrol || !CeilingAttached(__instance)) return true;
             if (Target(__instance) != null) { runtime.Patrol = false; return true; }
             if (runtime.PatrolEndsAt <= 0f) runtime.PatrolEndsAt = Time.time + PonyPolicy.PatrolDuration(UnityEngine.Random.value);
@@ -341,6 +356,10 @@ internal static class PonyElitePatches
         try
         {
             PlayerAvatar player = Target(__instance);
+            // A reachable ceiling capture takes priority over the optional drop.
+            // The native setter still owns tells, collision, disarming and retries.
+            if (TryCeilingCapture(__instance, state, runtime, player))
+            { runtime.Intercept = false; return false; }
             if (!Ready(state) || Impulse(__instance) || !CeilingAttached(__instance) ||
                 CeilingStayRequired(__instance) || !TargetVisible(__instance, player) ||
                 !TongueFree(__instance) || PlayerCooldown(__instance, player) ||

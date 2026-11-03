@@ -56,7 +56,7 @@
   "Enemy.Mentalist": "Yüklenmeden önce 2 sn'ye kadar yer değiştirerek görülen oyuncuları ve değerli eşyaları birlikte hedefler. Daha hızlı psişik yüklenme ve sınırlı bir ek saldırı yapar.",
   "Enemy.Oogly": "Daha alçaktan uçar, bazen zeminde veya masa hizasında yatay bakarak devriye gezer ve başarısız bir dalışı tekrarlar.",
   "Enemy.Peeper": "Bakış hasarını daha hızlı uygular ve görülen başka hedefe bir kez geçebilir.",
-  "Enemy.Pony": "Görülen silahlı oyuncuları tercih eder; dil saldırısı için 2,5 m'ye kadar yana geçer ve takip başına bir ek engeli kaldırır. Tavandan yol keser, bazen hedefsiz de tavanda gezer. Uyarı ve toparlanma korunur.",
+  "Enemy.Pony": "Görülen silahlı oyuncuları tercih eder; dil saldırısı için 2,5 m'ye kadar yana geçer ve takip başına bir ek engeli kaldırır. Tavandan yol keser, bazen hedefsiz de tavanda gezer. Uyarı ve toparlanma korunur. Tavandan oyuncuyu yakalayıp yukarı çeker ve fırlatır; fırlatacak yer yoksa serbest bırakır.",
   "Enemy.Reaper": "Son görülen yeri saldırarak arar, ardından yakındaki bir köşeyi veya siper yanını kontrol eder. Oyuncuyu bulamazsa saldırıyı keser.",
   "Enemy.Robe": "Daha uzun kovalar, bir kez tekrar takip edebilir ve görülmese bile hedefe en az 8 m/sn ile ilerler.",
   "Enemy.Rugrat": "Ulaşılabilir, kırılabilir en değerli eşyayı seçer; zıplamadan yaklaşır ve bir ek atış dener. Eşyayla siperin yanına geçerek açık atış açısı arayabilir.",

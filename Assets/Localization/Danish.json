@@ -56,7 +56,7 @@
   "Enemy.Mentalist": "Flytter sig i op til 2 s før opladning for at ramme synlige spillere og værdigenstande sammen. Hurtigere psykisk opladning og ét begrænset ekstra angreb.",
   "Enemy.Oogly": "Flyver lavere, patruljerer af og til ved gulv- eller bordhøjde med vandret blik og gentager ét mislykket dyk.",
   "Enemy.Peeper": "Giver blikskade hurtigere og kan skifte én gang til et andet synligt mål.",
-  "Enemy.Pony": "Prioriterer synlige bevæbnede spillere, flankerer op til 2,5 m for tungen og fjerner én ekstra forhindring pr. jagt. Afskærer fra loftet og patruljerer der sommetider uden mål. Varsler og restitution bevares.",
+  "Enemy.Pony": "Prioriterer synlige bevæbnede spillere, flankerer op til 2,5 m for tungen og fjerner én ekstra forhindring pr. jagt. Afskærer fra loftet og patruljerer der sommetider uden mål. Varsler og restitution bevares. Kan gribe en spiller fra loftet, løfte og kaste spilleren væk; slipper, hvis der ikke er plads til kastet.",
   "Enemy.Reaper": "Angriber under søgning på sidste sete position og tjekker derefter ét nært hjørne eller side af dækning. Stopper angrebet, hvis spilleren ikke findes.",
   "Enemy.Robe": "Jager længere, kan genoptage jagten én gang og bevæger sig mindst 8 m/s mod målet, også når ingen ser den.",
   "Enemy.Rugrat": "Vælger den dyreste tilgængelige ødelæggelige genstand, nærmer sig uden hop og prøver ét ekstra kast. Kan gå sidelæns om dækning med genstanden for en fri kastevinkel.",

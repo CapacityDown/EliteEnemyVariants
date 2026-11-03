@@ -56,7 +56,7 @@
   "Enemy.Mentalist": "Flyttar sig upp till 2 s före laddning för att fånga synliga spelare och värdesaker tillsammans. Snabbare psykisk laddning och en begränsad extra attack.",
   "Enemy.Oogly": "Flyger lägre, patrullerar ibland nära golv eller bord med vågrät blick och försöker om ett misslyckat dyk.",
   "Enemy.Peeper": "Ger blickskada snabbare och kan byta en gång till ett annat synligt mål.",
-  "Enemy.Pony": "Prioriterar synliga beväpnade spelare, flankerar upp till 2,5 m för tungan och röjer ett extra hinder per jakt. Genskjuter från taket och patrullerar där ibland utan mål. Varningar och återhämtning bevaras.",
+  "Enemy.Pony": "Prioriterar synliga beväpnade spelare, flankerar upp till 2,5 m för tungan och röjer ett extra hinder per jakt. Genskjuter från taket och patrullerar där ibland utan mål. Varningar och återhämtning bevaras. Kan gripa en spelare från taket, lyfta och slunga iväg spelaren; släpper om det saknas utrymme för kastet.",
   "Enemy.Reaper": "Attackerar under sökandet vid senast sedda platsen och kontrollerar sedan ett närliggande hörn eller en skyddssida. Slutar om spelaren inte hittas.",
   "Enemy.Robe": "Jagar längre, kan återuppta jakten en gång och rör sig minst 8 m/s mot målet även när ingen tittar.",
   "Enemy.Rugrat": "Väljer det dyraste nåbara förstörbara föremålet, närmar sig utan hopp och försöker ett extra kast. Kan gå runt skydd med föremålet för en fri kastvinkel.",

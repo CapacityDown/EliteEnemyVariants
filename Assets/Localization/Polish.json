@@ -56,7 +56,7 @@
   "Enemy.Mentalist": "Przed ładowaniem przemieszcza się do 2 s, aby objąć widocznych graczy i kosztowności. Szybsze ładowanie psychiczne i jeden ograniczony dodatkowy atak.",
   "Enemy.Oogly": "Lata niżej, czasem patroluje przy podłodze lub stołach z poziomym spojrzeniem i raz ponawia nieudane nurkowanie.",
   "Enemy.Peeper": "Szybciej zadaje obrażenia spojrzeniem i może raz przejść na inny widoczny cel.",
-  "Enemy.Pony": "Preferuje widocznych uzbrojonych graczy, obchodzi do 2,5 m dla ataku językiem i usuwa dodatkową przeszkodę na pościg. Przechwytuje z sufitu i czasem patroluje tam bez celu. Ostrzeżenia i odpoczynek pozostają.",
+  "Enemy.Pony": "Preferuje widocznych uzbrojonych graczy, obchodzi do 2,5 m dla ataku językiem i usuwa dodatkową przeszkodę na pościg. Przechwytuje z sufitu i czasem patroluje tam bez celu. Ostrzeżenia i odpoczynek pozostają. Może schwytać gracza z sufitu, podciągnąć i odrzucić; puszcza go, jeśli brakuje miejsca na rzut.",
   "Enemy.Reaper": "Atakuje podczas szukania w ostatnim widzianym miejscu, potem sprawdza pobliski róg lub bok osłony. Przestaje, jeśli nie znajdzie gracza.",
   "Enemy.Robe": "Dłużej ściga, raz ponawia pościg i porusza się do celu z prędkością co najmniej 8 m/s, nawet nieobserwowany.",
   "Enemy.Rugrat": "Wybiera najcenniejszy dostępny zniszczalny przedmiot, podchodzi bez skakania i próbuje dodatkowego rzutu. Z przedmiotem może obejść osłonę dla czystego rzutu.",

@@ -83,7 +83,7 @@ Orbs dropped by defeated Enhanced enemies are worth 1.5 times their usual value,
 | Mentalist | Before charging, it can spend up to two seconds repositioning to catch visible players and nearby valuables together. It then uses its faster psychic charge and one additional bounded psychic attack. |
 | Oogly | Uses a lower regular flight band, periodically patrols near floor or table height with its gaze parallel to the floor, and retries one failed dive. |
 | Peeper | Applies gaze damage faster and can hand off once to another visible target. |
-| Pony | Favors visible armed players, circles up to 2.5 m to find a clear tongue attack, and can remove one blocking object per pursuit. Can move ahead of a visible moving target on the ceiling before dropping. Before finding anyone, it can also patrol the ceiling for 20–30 seconds, with a 50% chance checked every 10–15 seconds when conditions allow and at least 20 seconds on the ground between patrols. Attack warnings and recovery are preserved. |
+| Pony | Favors visible armed players, circles up to 2.5 m to find a clear tongue attack, and can remove one blocking object per pursuit. From the ceiling, prioritizes grabbing a reachable player, lifting them and flinging them sideways or slightly downward. Releases without a fling if there is no clear space. Can also move ahead of a visible moving target before dropping. Before finding anyone, it can patrol the ceiling for 20–30 seconds, with a 50% chance checked every 10–15 seconds when conditions allow and at least 20 seconds on the ground between patrols. Attack warnings, throwing strength and recovery are preserved. |
 | Reaper | Keeps attacking while searching the last place it saw a player, then checks one nearby corner or side of cover. Stops attacking if it cannot find the player. |
 | Robe | Pursues longer, can re-engage once, and maintains at least 8 m/s toward its target even while unseen. |
 | Rugrat | Selects the highest-value reachable destructible item, approaches it without jumping, and makes one extra throw attempt. While holding an item, can move sideways around cover to find a clear throwing angle. |
@@ -297,7 +297,7 @@ Enhanced個体を倒した際に落とすオーブの金額は通常の1.5倍に
 | Mentalist | 念力を溜める前に、視認したプレイヤーと近くの換金物をまとめて巻き込める位置へ最長2秒移動します。その後、速い溜めと上限付きの追加念力攻撃を行います。 |
 | Oogly | 通常の飛行高度が低くなり、視線を床と平行に保ちながら床・机付近を定期巡回し、失敗した急降下を1度再試行します。 |
 | Peeper | 視線ダメージが速くなり、別の視認中標的へ1度だけ引き継ぎます。 |
-| Pony | 視認中の武装したプレイヤーを優先し、最大2.5mの回り込みで舌の射線を確保します。追跡中に1個だけ遮蔽物を取り除くことがあり、天井からは視認中の移動する標的の先へ回り込んで降下を狙います。未発見時も、条件を満たす間は10～15秒ごとに50%の確率で天井へ移り、20～30秒巡回します。巡回後は地上で20秒以上空けます。攻撃の予兆と回復時間は維持します。 |
+| Pony | 視認中の武装したプレイヤーを優先し、最大2.5mの回り込みで舌の射線を確保します。追跡中に1個だけ遮蔽物を取り除くことがあります。天井から届く標的は捕縛を優先し、引き上げて横～斜め下へ投げ飛ばします。投げる空間がない場合は、そのまま解放します。視認中の移動する標的の先へ回り込んで降下を狙うこともあります。未発見時も、条件を満たす間は10～15秒ごとに50%の確率で天井へ移り、20～30秒巡回します。巡回後は地上で20秒以上空けます。攻撃の予兆・投げの強さ・回復時間は維持します。 |
 | Reaper | 見失ったプレイヤーの最終目撃地点まで攻撃しながら探索し、さらに近くの角や遮蔽物の脇を1か所確認します。発見できなければ攻撃を解除します。 |
 | Robe | 追跡時間が長くなり、1度だけ再追跡し、プレイヤーに見られていない状態でも標的方向へ最低8 m/sで移動します。 |
 | Rugrat | 到達可能で最も価値の高い破壊可能アイテムを選び、接近中はジャンプせず、投擲を1回追加で試みます。アイテムを持った状態で遮蔽物の左右へ回り込み、投げられる角度を探します。 |

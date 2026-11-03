@@ -56,7 +56,7 @@
   "Enemy.Mentalist": "Siirtyy enintään 2 s ennen latausta tavoittaakseen näkyvät pelaajat ja arvotavarat yhdessä. Nopeampi psyykkinen lataus ja yksi rajattu lisähyökkäys.",
   "Enemy.Oogly": "Lentää alempana, partioi välillä lattian tai pöytien korkeudella katse vaakatasossa ja yrittää epäonnistunutta syöksyä kerran uudelleen.",
   "Enemy.Peeper": "Aiheuttaa katsevahinkoa nopeammin ja voi vaihtaa kerran toiseen näkyvään kohteeseen.",
-  "Enemy.Pony": "Suosii näkyviä aseistettuja pelaajia, kiertää enintään 2,5 m kielihyökkäystä varten ja poistaa yhden lisäesteen jahtia kohden. Katkaisee reitin katosta ja partioi siellä välillä ilman kohdetta. Varoitukset ja palautuminen säilyvät.",
+  "Enemy.Pony": "Suosii näkyviä aseistettuja pelaajia, kiertää enintään 2,5 m kielihyökkäystä varten ja poistaa yhden lisäesteen jahtia kohden. Katkaisee reitin katosta ja partioi siellä välillä ilman kohdetta. Varoitukset ja palautuminen säilyvät. Voi tarttua pelaajaan katosta, nostaa ja heittää tämän; päästää irti, jos heitolle ei ole tilaa.",
   "Enemy.Reaper": "Hyökkää etsiessään viimeksi nähdystä paikasta ja tarkistaa sitten yhden läheisen kulman tai suojan sivun. Lopettaa hyökkäyksen, jos pelaajaa ei löydy.",
   "Enemy.Robe": "Jahtaa pidempään, voi jatkaa kerran ja liikkuu kohdetta kohti vähintään 8 m/s myös katseilta piilossa.",
   "Enemy.Rugrat": "Valitsee arvokkaimman saavutettavan särkyvän esineen, lähestyy hyppimättä ja yrittää yhden lisäheiton. Voi kiertää suojan esineen kanssa löytääkseen vapaan heittokulman.",
