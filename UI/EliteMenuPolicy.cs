@@ -10,6 +10,14 @@ internal static class EliteMenuPolicy
         ready && (inRoom ? master : !multiplayer);
     internal static float ButtonTop(float rolesBottom, float eventsBottom) =>
         Math.Max(36f, Math.Max(rolesBottom, eventsBottom) + 12f);
+    internal static float WheelStep(float height, float travel, float handle)
+    {
+        if (height <= 0 || travel <= 0 || handle <= 0 ||
+            float.IsNaN(height) || float.IsNaN(travel) || float.IsNaN(handle) ||
+            float.IsInfinity(height) || float.IsInfinity(travel) || float.IsInfinity(handle)) return 0;
+        float step = 75f * (handle / travel) * (height * 0.01f);
+        return float.IsNaN(step) || float.IsInfinity(step) ? 0 : step;
+    }
     internal static string Encode(int actor, long mask, bool active, int revision) =>
         string.Join(":", "1", actor.ToString(CultureInfo.InvariantCulture), mask.ToString(CultureInfo.InvariantCulture),
             active ? "1" : "0", revision.ToString(CultureInfo.InvariantCulture));

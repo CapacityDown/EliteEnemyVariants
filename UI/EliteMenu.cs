@@ -45,7 +45,7 @@ internal sealed class EliteMenu : MonoBehaviour
             REPOLabel version = MenuAPI.CreateREPOLabel("EliteEnemyVariants v" + EliteEnemyVariantsPlugin.PluginVersion, parent, new Vector2(108, 72));
             version.rectTransform.sizeDelta = new Vector2(190, 50);
             version.labelTMP.rectTransform.sizeDelta = new Vector2(190, 50);
-            version.labelTMP.fontSize = 15; version.labelTMP.enableWordWrapping = true;
+            version.labelTMP.fontSize = 15; version.labelTMP.textWrappingMode = TextWrappingModes.Normal;
             version.labelTMP.alignment = TextAlignmentOptions.Left;
             MenuAPI.CreateREPOButton("Back", () => { Forget(); page.ClosePage(true); }, parent, new Vector2(66, 18));
         });
@@ -172,7 +172,7 @@ internal sealed class EliteMenu : MonoBehaviour
             TMP_Text text = row.Label.labelTMP;
             text.text = entry.Text; text.richText = false; text.fontSize = entry.Control || entry.Title ? 20 : 18;
             text.fontStyle = entry.Title ? FontStyles.Bold : FontStyles.Normal;
-            text.enableWordWrapping = true; text.enableAutoSizing = false; text.overflowMode = TextOverflowModes.Truncate;
+            text.textWrappingMode = TextWrappingModes.Normal; text.enableAutoSizing = false; text.overflowMode = TextOverflowModes.Truncate;
             float height = Mathf.Max(entry.Control ? 40f : 30f, text.GetPreferredValues(entry.Text, width - 22f, 0).y + 14f);
             text.alignment = TextAlignmentOptions.Left;
             text.color = entry.Control && entry.Click == null ? new Color(0.5f, 0.52f, 0.55f) : Color.white;

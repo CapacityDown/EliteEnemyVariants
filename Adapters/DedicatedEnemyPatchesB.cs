@@ -537,7 +537,7 @@ internal static class SpewerElitePatches
             return;
         }
         Enemy enemy = __instance.GetComponent<Enemy>();
-        PlayerAvatar target = GameFieldAccess.Vision(enemy).onVisionTriggeredPlayer;
+        PlayerAvatar target = GameFieldAccess.VisionTriggeredPlayer(GameFieldAccess.Vision(enemy));
         if (!DedicatedBehaviorSupport.IsValidTarget(target))
         {
             return;
@@ -706,13 +706,13 @@ internal static class ChefElitePatches
             {
                 runtime.NextActionAt = Time.time + 6f;
             }
-            Rigidbody rb = GameFieldAccess.Rigidbody(state.Enemy).rb;
+            Rigidbody rb = GameFieldAccess.PhysicsBody(GameFieldAccess.Rigidbody(state.Enemy));
             Vector3 direction = PlayerTarget(enemy).transform.position - rb.position;
             direction.y = 0f;
             if (direction.sqrMagnitude > 0.01f)
             {
                 direction.Normalize();
-                Vector3 horizontalVelocity = rb.velocity;
+                Vector3 horizontalVelocity = rb.linearVelocity;
                 horizontalVelocity.y = 0f;
                 Vector3 desiredVelocity = direction * 18f;
                 Vector3 velocityChange = Vector3.ClampMagnitude(
@@ -860,6 +860,7 @@ internal static class RugratElitePatches
     {
         if (!SemiFunc.IsMasterClientOrSingleplayer() ||
             !EliteRegistry.TryGet(__instance, out _) ||
+            __instance.currentState != EnemyValuableThrower.State.GoToTarget ||
             !DedicatedBehaviorSupport.IsValidTarget(PlayerTarget(__instance)))
         {
             return;
@@ -874,7 +875,8 @@ internal static class RugratElitePatches
             ValuableObject? valuable = collider.GetComponentInParent<ValuableObject>();
             PhysGrabObject? physGrab = valuable != null ? GameFieldAccess.ValuablePhysGrabObject(valuable) : null;
             PhysGrabObjectImpactDetector? impact = physGrab != null ? GameFieldAccess.ImpactDetector(physGrab) : null;
-            if (valuable == null || physGrab == null || impact == null ||
+            if (valuable == null || valuable.volumeType > ValuableVolume.Type.Big ||
+                physGrab == null || impact == null ||
                 GameFieldAccess.IsIndestructible(impact))
             {
                 continue;

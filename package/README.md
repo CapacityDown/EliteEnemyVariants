@@ -8,13 +8,15 @@ Elite Enemy Variants randomly converts supported vanilla enemies into a single E
 
 Only the host needs the mod. Unmodded participants experience the Enhanced enemies normally.
 
+The 29 enemies described below are supported. Pony keeps its normal behavior and is not selected for enhancement.
+
 For questions, bug reports, or feedback, please use [GitHub Issues](https://github.com/CapacityDown/EliteEnemyVariants/issues). A GitHub account is required to submit an issue.
 
 ### Requirements
 
 - BepInExPack 5.4.2305 or a later compatible version
-- MenuLib 2.5.2 or a later compatible version
-- REPOConfig 1.2.6 or a later compatible version
+- MenuLib by REPOModding
+- REPOConfig by REPOModding
 
 ### Installation
 
@@ -204,13 +206,15 @@ Elite Enemy Variants は、対応するバニラ敵を確率で単一の「Enhan
 
 導入が必要なのはホストだけです。MOD未導入の参加者にもEnhanced個体の挙動が通常どおり反映されます。
 
+下記の29種の敵に対応しています。Ponyは通常の挙動を維持し、強化抽選の対象になりません。
+
 ご質問、不具合報告、ご意見は[GitHub Issues](https://github.com/CapacityDown/EliteEnemyVariants/issues)からお送りください。投稿にはGitHubアカウントが必要です。
 
 ### 必須環境
 
 - BepInExPack 5.4.2305 以降の互換バージョン
-- MenuLib 2.5.2 以降の互換バージョン
-- REPOConfig 1.2.6 以降の互換バージョン
+- REPOModding版 MenuLib
+- REPOModding版 REPOConfig
 
 ### 導入方法
 

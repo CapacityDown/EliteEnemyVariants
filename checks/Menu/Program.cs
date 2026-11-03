@@ -24,6 +24,19 @@ static class Program
         Check(EliteMenuPolicy.ButtonTop(0,70)==82,"under Events");
         Check(EliteMenuPolicy.ButtonTop(70,110)==122,"under both mods");
         Check(EliteMenuPolicy.ButtonTop(120,70)==132,"late Roles placement recomputed");
+        foreach(float height in new[]{300f,1500f,10000f}) foreach(float travel in new[]{200f,1000f,9000f})
+        foreach(float handle in new[]{40f,120f,250f})
+        {
+            float nativeStep=EliteMenuPolicy.WheelStep(height,travel,handle);
+            float contentTravel=nativeStep/(height*0.01f)*travel/handle;
+            Check(Math.Abs(contentTravel-75f)<0.001f,"Sunstone wheel keeps 75-unit content travel");
+        }
+        foreach(float bad in new[]{0f,-1f,float.NaN,float.PositiveInfinity,float.NegativeInfinity})
+        {
+            Check(EliteMenuPolicy.WheelStep(bad,100,10)==0,"invalid scroll height");
+            Check(EliteMenuPolicy.WheelStep(100,bad,10)==0,"invalid scroll travel");
+            Check(EliteMenuPolicy.WheelStep(100,100,bad)==0,"invalid scroll handle");
+        }
         Check(Enum.GetValues<EliteArchetype>().Length==29,"all 29 enemies");
         long all=Enum.GetValues<EliteArchetype>().Aggregate(0L,(mask,enemy)=>mask|1L<<(int)enemy);
         Check(all==EliteMenuPolicy.AllEnemies,"stable complete mask");

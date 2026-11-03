@@ -7,12 +7,16 @@
     <AssemblyName>EliteEnemyVariants</AssemblyName>
     <RootNamespace>REPOJP.EliteEnemyVariants</RootNamespace>
     <Authors>REPOJP</Authors>
-    <Version>4.0.3</Version>
+    <Version>5.0.0</Version>
     <CopyFilesToPluginOutputDirectoryOnBuild>false</CopyFilesToPluginOutputDirectoryOnBuild>
     <CopyFilesToPluginOutputDirectoryOnRun>false</CopyFilesToPluginOutputDirectoryOnRun>
   </PropertyGroup>
 
+  <Import Project="Directory.Repo.props" Condition="Exists('Directory.Repo.props')" />
+
   <PropertyGroup>
+    <RepoGamePath Condition="'$(RepoGamePath)' == ''">$(REPO_GAME_DIR)</RepoGamePath>
+    <GameManagedDir>$(RepoGamePath)\REPO_Data\Managed</GameManagedDir>
     <RestoreAdditionalProjectSources>
       https://api.nuget.org/v3/index.json;
       https://nuget.bepinex.dev/v3/index.json;
@@ -28,8 +32,15 @@
     <Compile Remove="checks/**/*.cs" />
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" ExcludeAssets="runtime" />
-    <PackageReference Include="UnityEngine.Modules" Version="2022.3.62" IncludeAssets="compile" PrivateAssets="all" />
-    <PackageReference Include="R.E.P.O.GameLibs.Steam" Version="*-*" PrivateAssets="all" />
+    <Compile Remove="outputs/**/*.cs;Deployments/**/*.cs" />
+    <!-- Compile against the shipped Unity 6/game API, never the publicized 0.4 references. -->
+    <Reference Include="$(GameManagedDir)\Assembly-CSharp.dll;$(GameManagedDir)\Assembly-CSharp-firstpass.dll;$(GameManagedDir)\Photon*.dll;$(GameManagedDir)\Unity*.dll;$(GameManagedDir)\Facepunch.Steamworks.Win64.dll">
+      <Private>false</Private>
+    </Reference>
   </ItemGroup>
+
+  <Target Name="RequireInstalledGame" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(GameManagedDir)\Assembly-CSharp.dll')" Text="Set RepoGamePath (-p:RepoGamePath=... or Directory.Repo.props) to the R.E.P.O. v0.5.0 installation." />
+  </Target>
 
 </Project>

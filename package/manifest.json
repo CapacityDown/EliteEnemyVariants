@@ -1,11 +1,11 @@
 {
   "name": "EliteEnemyVariants",
-  "version_number": "4.0.3",
+  "version_number": "5.0.0",
   "website_url": "https://github.com/CapacityDown/EliteEnemyVariants/issues",
   "description": "【HostOnlyMOD】Enhances enemy behavior and abilities with host-only installation. ホストのみの導入で、敵の挙動や能力を強化します。",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2305",
-    "nickklmao-MenuLib-2.5.2",
-    "nickklmao-REPOConfig-1.2.6"
+    "REPOModding-MenuLib-2.6.0",
+    "REPOModding-REPOConfig-1.2.7"
   ]
 }

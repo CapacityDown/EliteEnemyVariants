@@ -43,6 +43,10 @@ internal static class GameFieldAccess
         AccessTools.FieldRefAccess<Enemy, int>("TargetPlayerViewID");
     private static readonly AccessTools.FieldRef<EnemyOnScreen, bool> OnScreenAnyRef =
         AccessTools.FieldRefAccess<EnemyOnScreen, bool>("OnScreenAny");
+    private static readonly AccessTools.FieldRef<EnemyVision, PlayerAvatar> VisionTriggeredPlayerRef =
+        AccessTools.FieldRefAccess<EnemyVision, PlayerAvatar>("onVisionTriggeredPlayer");
+    private static readonly AccessTools.FieldRef<EnemyRigidbody, Rigidbody> PhysicsBodyRef =
+        AccessTools.FieldRefAccess<EnemyRigidbody, Rigidbody>("rb");
 
     private static readonly AccessTools.FieldRef<EnemyHealth, int> HealthCurrentRef =
         AccessTools.FieldRefAccess<EnemyHealth, int>("healthCurrent");
@@ -127,6 +131,8 @@ internal static class GameFieldAccess
     internal static void SetTargetPlayer(Enemy enemy, PlayerAvatar player) => EnemyTargetPlayerAvatar(enemy) = player;
     internal static void SetTargetPlayerViewId(Enemy enemy, int viewId) => EnemyTargetPlayerViewId(enemy) = viewId;
     internal static bool OnScreenAny(EnemyOnScreen onScreen) => OnScreenAnyRef(onScreen);
+    internal static PlayerAvatar VisionTriggeredPlayer(EnemyVision vision) => VisionTriggeredPlayerRef(vision);
+    internal static Rigidbody PhysicsBody(EnemyRigidbody body) => PhysicsBodyRef(body);
 
     internal static int HealthCurrent(EnemyHealth health) => HealthCurrentRef(health);
     internal static bool IsDead(EnemyHealth health) => HealthDeadRef(health);

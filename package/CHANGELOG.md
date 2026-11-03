@@ -1,4 +1,6 @@
-## v4.0.3
+## v5.0.0
+- Updated for the Sunstone Update while retaining existing enemy enhancements, settings, and the Elites menu.
+- Updated the required menu and configuration mods.
 - Added the Elites menu with enemy enhancement descriptions, host-controlled selection switches, display refresh, and bug-report tools.
 - Elites appears below Roles and Events when RoleShuffle or Stage Flux is installed.
 - Added GitHub Issues guidance for questions, bug reports, and feedback.
