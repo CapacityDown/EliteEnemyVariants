@@ -25,18 +25,19 @@ static class Program
         Check(EliteMenuPolicy.ButtonTop(0,70)==82,"under Events");
         Check(EliteMenuPolicy.ButtonTop(70,110)==122,"under both mods");
         Check(EliteMenuPolicy.ButtonTop(120,70)==132,"late Roles placement recomputed");
-        foreach(float height in new[]{300f,1500f,10000f}) foreach(float travel in new[]{200f,1000f,9000f})
+        foreach(float units in new[]{1f,120f}) foreach(float notches in new[]{-3f,-0.5f,0.5f,1f,3f})
+        foreach(float travel in new[]{200f,1000f,9000f})
         foreach(float handle in new[]{40f,120f,250f})
         {
-            float nativeStep=EliteMenuPolicy.WheelStep(height,travel,handle);
-            float contentTravel=nativeStep/(height*0.01f)*travel/handle;
-            Check(Math.Abs(contentTravel-75f)<0.001f,"Sunstone wheel keeps 75-unit content travel");
+            float step=EliteMenuPolicy.WheelStep(notches*units,units,travel,handle);
+            float contentTravel=step*travel/handle;
+            Check(Math.Abs(contentTravel-notches*97.5f)<0.001f,"Roles three-body-line wheel distance and magnitude");
         }
         foreach(float bad in new[]{0f,-1f,float.NaN,float.PositiveInfinity,float.NegativeInfinity})
         {
-            Check(EliteMenuPolicy.WheelStep(bad,100,10)==0,"invalid scroll height");
-            Check(EliteMenuPolicy.WheelStep(100,bad,10)==0,"invalid scroll travel");
-            Check(EliteMenuPolicy.WheelStep(100,100,bad)==0,"invalid scroll handle");
+            Check(EliteMenuPolicy.WheelStep(1,bad,100,10)==0,"invalid wheel units");
+            Check(EliteMenuPolicy.WheelStep(1,1,bad,10)==0,"invalid scroll travel");
+            Check(EliteMenuPolicy.WheelStep(1,1,100,bad)==0,"invalid scroll handle");
         }
         Check(Enum.GetValues<EliteArchetype>().Length==30,"all 30 enemies");
         long all=Enum.GetValues<EliteArchetype>().Aggregate(0L,(mask,enemy)=>mask|1L<<(int)enemy);

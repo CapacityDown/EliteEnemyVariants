@@ -25,6 +25,7 @@ try {
     $suites = @(
         @{ Project = 'checks\Compatibility\Compatibility.Checks.csproj'; Arguments = $compatibilityArgs },
         @{ Project = 'checks\Menu\Menu.Checks.csproj'; Arguments = @($dll, $gameDll) },
+        @{ Project = 'checks\Presentation\Presentation.Checks.csproj'; Arguments = @($gameDll, (Join-Path $PSScriptRoot '..\RoleShuffle')) },
         @{ Project = 'checks\Tactics\Tactics.Checks.csproj'; Arguments = @($gameDll, $dll) },
         @{ Project = 'checks\Pony\Pony.Checks.csproj'; Arguments = @($gameDll, $dll) },
         @{ Project = 'checks\Localization\Localization.Checks.csproj'; Arguments = @($dll, $PSScriptRoot, $managed) },

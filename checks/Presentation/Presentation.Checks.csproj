@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType><TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors><NuGetAudit>false</NuGetAudit>
+    <RoleReference Condition="'$(RoleReference)' == ''">$(MSBuildThisFileDirectory)../../../RoleShuffle</RoleReference>
+    <DefineConstants Condition="Exists('$(RoleReference)/RoleMenuScroll.cs')">$(DefineConstants);ROLE_REFERENCE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../UI/EliteMenuScroll.cs;../../UI/EliteMenuPolicy.cs;../../UI/EliteMenuLayout.cs" />
+    <Compile Include="$(RoleReference)/RoleMenuScroll.cs" Condition="Exists('$(RoleReference)/RoleMenuScroll.cs')" Link="RoleMenuScroll.reference.cs" />
+    <PackageReference Include="HarmonyX" Version="2.7.0" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.4" />
+  </ItemGroup>
+</Project>

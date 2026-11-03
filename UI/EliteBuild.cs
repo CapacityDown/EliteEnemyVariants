@@ -5,7 +5,7 @@ namespace REPOJP.EliteEnemyVariants;
 internal static class EliteBuild
 {
     internal static readonly int Number = ReadNumber();
-    internal static string Label => $"EliteEnemyVariants v{EliteEnemyVariantsPlugin.PluginVersion} (build-{Number})";
+    internal static string Label => $"EliteEnemyVariants v{EliteEnemyVariantsPlugin.PluginVersion}(build-{Number})";
     private static int ReadNumber()
     {
         foreach (var attribute in typeof(EliteBuild).Assembly.GetCustomAttributes<AssemblyMetadataAttribute>())

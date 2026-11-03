@@ -50,7 +50,7 @@ internal sealed partial class EliteMenu : MonoBehaviour
             version.rectTransform.sizeDelta = new Vector2(190, 24);
             version.labelTMP.rectTransform.sizeDelta = new Vector2(190, 24);
             version.labelTMP.fontSize = 16; version.labelTMP.textWrappingMode = TextWrappingModes.NoWrap;
-            version.labelTMP.enableAutoSizing = true; version.labelTMP.fontSizeMin = 10; version.labelTMP.fontSizeMax = 16;
+            version.labelTMP.enableAutoSizing = false;
             version.labelTMP.color = new Color(0.72f, 0.72f, 0.72f, 0.9f);
             version.labelTMP.alignment = TextAlignmentOptions.Left;
             _back = MenuAPI.CreateREPOButton("Back", () => { Forget(); page.ClosePage(true); }, parent, new Vector2(66, 18));
@@ -100,20 +100,21 @@ internal sealed partial class EliteMenu : MonoBehaviour
         void Text(string key, bool title = false)
         {
             string text = T(key);
-            if (title) entries.Add(new Entry(text, title: true));
+            if (title) entries.Add(new Entry(text, EliteMenuRowKind.EnemyHeading));
             else foreach (string line in Wrap(text)) entries.Add(new Entry(line));
         }
         void Button(string key, Action action, bool allowed = true, bool off = false, bool literal = false) =>
-            entries.Add(new Entry(literal ? key : T(key), allowed ? action : null, true, off: off));
+            entries.Add(new Entry(literal ? key : "> " + T(key),
+                literal ? EliteMenuRowKind.Setting : EliteMenuRowKind.Action, allowed ? action : null, off));
         bool editable = EliteMenuState.CanEdit;
         bool available = _settings.TryRead(out long mask, out bool active);
-        if (_message.Length > 0) Text(_message);
+        if (_message.Length > 0) entries.Add(new Entry(T(_message), EliteMenuRowKind.Message));
         switch (_view)
         {
             case View.Guide:
                 Text("GuideIntro"); Text("Markers");
                 foreach (EliteArchetype enemy in EliteGuideCatalog.Enemies)
-                { entries.Add(new Entry("", space: true)); Text(EnemyDisplayNameResolver.Get(enemy), true); Text("Enemy." + enemy); }
+                { entries.Add(new Entry("", EliteMenuRowKind.Space)); Text(EnemyDisplayNameResolver.Get(enemy), true); Text("Enemy." + enemy); }
                 break;
             case View.Settings:
                 Text("SelectionHelp"); Text(editable ? "HostEdit" : "GuestRead");
@@ -132,7 +133,7 @@ internal sealed partial class EliteMenu : MonoBehaviour
                 }
                 break;
             case View.Tools:
-                Text("Status", true); Text(StatusKey());
+                Text("Status"); Text(StatusKey());
                 Button("Refresh", () => { _settings.RefreshDisplay(); _message = "RefreshDone"; });
                 Text("NoHud");
                 Button("ReportButton", () => Switch(View.Report));
@@ -158,8 +159,8 @@ internal sealed partial class EliteMenu : MonoBehaviour
                 break;
         }
         Style(_page.headerTMP, 32, 18);
-        _page.headerTMP.text = T(_view.ToString());
-        if (_back != null) { _back.labelTMP.text = T("Back"); Style(_back.labelTMP, 20, 12); }
+        _page.headerTMP.text = T(_view == View.Report ? "Report" : _view + "Title");
+        if (_back != null) { _back.labelTMP.text = "  " + T("Back"); Style(_back.labelTMP, 20, 12); }
         foreach (var pair in _navigation)
         {
             bool selected = pair.Key == _view || pair.Key == View.Tools && _view == View.Report;
@@ -183,15 +184,19 @@ internal sealed partial class EliteMenu : MonoBehaviour
             if (i >= entries.Count) { row.Separator.gameObject.SetActive(false); continue; }
             Entry entry = entries[i];
             TMP_Text text = row.Label.labelTMP;
-            text.text = entry.Text; text.richText = false; text.fontSize = entry.Control || entry.Title ? 20 : 18;
+            text.text = entry.Text; text.richText = false; text.fontSize = EliteMenuLayout.FontSize(entry.Kind);
             text.font = EliteGuideFont.ForLanguage(row.DefaultFont, _language);
             EliteTextLayout.Apply(text, _language);
-            text.fontStyle = entry.Title ? FontStyles.Bold : FontStyles.Normal;
-            text.textWrappingMode = TextWrappingModes.NoWrap; text.enableAutoSizing = entry.Control || entry.Title;
-            text.fontSizeMin = 12; text.fontSizeMax = entry.Control || entry.Title ? 20 : 18;
+            text.fontStyle = EliteMenuLayout.Bold(entry.Kind) ? FontStyles.Bold : FontStyles.Normal;
+            bool wrap = EliteMenuLayout.Wrap(entry.Kind);
+            text.textWrappingMode = wrap ? TextWrappingModes.Normal : TextWrappingModes.NoWrap;
+            text.enableAutoSizing = entry.Control;
+            text.fontSizeMin = 12; text.fontSizeMax = EliteMenuLayout.FontSize(entry.Kind);
             text.overflowMode = TextOverflowModes.Overflow;
-            float height = entry.Space ? 10 : entry.Control ? 32 : entry.Title ? 30 : 25;
-            text.alignment = _language == EliteLanguage.Arabic ? TextAlignmentOptions.Right : TextAlignmentOptions.Left;
+            float height = EliteMenuLayout.Height(entry.Kind);
+            text.alignment = _language == EliteLanguage.Arabic
+                ? (wrap ? TextAlignmentOptions.TopRight : TextAlignmentOptions.Right)
+                : (wrap ? TextAlignmentOptions.TopLeft : TextAlignmentOptions.Left);
             text.color = entry.Control && entry.Click == null ? new Color(0.5f, 0.52f, 0.55f) : Color.white;
             row.Button.overrideButtonSize = new Vector2(width, height);
             row.Button.rectTransform.sizeDelta = new Vector2(width, height);
@@ -247,7 +252,7 @@ internal sealed partial class EliteMenu : MonoBehaviour
     private void Style(TMP_Text text, float max, float min)
     {
         text.font = EliteGuideFont.ForLanguage(text.font, _language); EliteTextLayout.Apply(text, _language);
-        text.alignment = _language == EliteLanguage.Arabic ? TextAlignmentOptions.Right : TextAlignmentOptions.Left;
+        // Preserve the native header/navigation alignment, as Roles does.
         text.textWrappingMode = TextWrappingModes.NoWrap; text.enableAutoSizing = true;
         text.fontSizeMax = max; text.fontSizeMin = min;
     }
@@ -289,8 +294,14 @@ internal sealed partial class EliteMenu : MonoBehaviour
         if (_instance == this) _instance = null;
     }
     private enum View { Guide, Settings, Tools, Report }
-    private sealed class Entry(string text, Action? click = null, bool control = false, bool title = false, bool off = false, bool space = false)
-    { internal readonly string Text = text; internal readonly Action? Click = click; internal readonly bool Control = control, Title = title, Off = off, Space = space; }
+    private sealed class Entry(string text, EliteMenuRowKind kind = EliteMenuRowKind.Body, Action? click = null, bool off = false)
+    {
+        internal readonly string Text = text;
+        internal readonly EliteMenuRowKind Kind = kind;
+        internal readonly Action? Click = click;
+        internal readonly bool Off = off;
+        internal bool Control => EliteMenuLayout.Control(Kind);
+    }
     private sealed class Row(REPOButton button, REPOLabel label, REPOScrollViewElement element, EliteMenuButtonVisual visual, RectTransform focus, Image separator)
     { internal readonly REPOButton Button = button; internal readonly REPOLabel Label = label; internal readonly REPOScrollViewElement Element = element; internal readonly EliteMenuButtonVisual Visual = visual; internal readonly RectTransform Focus = focus; internal readonly Image Separator = separator; internal readonly TMP_FontAsset DefaultFont = label.labelTMP.font; }
 }

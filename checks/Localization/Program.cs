@@ -20,7 +20,7 @@ Check(codes.Count == 21 && codes.Values.Distinct().Count() == 21, "all native lo
 Check(EliteGameLocale.Language == EliteLanguage.English, "locale manager not ready");
 LocalizationManager.instance = new();
 var english = EliteText.Catalog(EliteLanguage.English);
-Check(english.Count == 63, "33 menu strings and 30 descriptions");
+Check(english.Count == 66, "36 menu strings and 30 descriptions");
 foreach (var (code,language) in codes)
 {
     Check(EliteLocale.FromLocaleCode(code) == language, "native code " + code);
@@ -80,11 +80,16 @@ foreach (string name in new[]{"CheckpointRevenge","European.ttf","Korean.otf","C
     Check(mod.Resources.OfType<EmbeddedResource>().Any(r=>r.Name=="REPOJP.EliteEnemyVariants.Assets.Fonts."+name && r.GetResourceData().Length>0), "embedded font/license "+name);
 string ui = File.ReadAllText(Path.Combine(args[1],"UI/EliteMenu.cs"));
 foreach (string fragment in new[]{"spacing: 1.5f","parent, 272f","parent, 240f","parent, 208f","new Vector2(108, 54)",
-    "new Vector2(190, 24)","new Color(0.72f, 0.72f, 0.72f, 0.9f)","entry.Control ? 32","entry.Title ? 30 : 25",
+    "new Vector2(190, 24)","new Color(0.72f, 0.72f, 0.72f, 0.9f)","EliteMenuLayout.Height(entry.Kind)","EliteMenuLayout.FontSize(entry.Kind)",
     "topPadding: _rows.Count == 0 ? 20f : 3f, bottomPadding: 3f","entry.Control ? 12 : 0","selected ? \"> \" : \"  \"",
     "EliteGameLocale.Code","EliteGameLocale.Language","row.DefaultFont","entry.Off","EliteMenuState.CanEdit"})
     Check(ui.Contains(fragment),"Roles layout/localization contract: "+fragment);
 Check(!ui.Contains("StartsWith(\"[OFF]"),"translated OFF does not control state detection");
+Check(ui.Contains("EliteMenuLayout.Bold(entry.Kind)") && ui.Contains("text.enableAutoSizing = entry.Control;"),"Roles bold and fixed guide-heading format");
+Check(ui.Contains("version.labelTMP.enableAutoSizing = false;") && ui.Contains("\"  \" + T(\"Back\")"),"Roles version label and back-button indentation");
+Check(ui.Contains("literal ? key : \"> \" + T(key)") && ui.Contains("Text(\"Status\");"),"Roles tool action prefix and plain status heading");
+Check(ui.Contains("EliteMenuRowKind.Message") && ui.Contains("TextAlignmentOptions.TopRight"),"Roles wrapped feedback format with RTL support");
+Check(english["ToolsTitle"] == "Tools" && english["Tools"] == "TOOLS", "separate heading and navigation capitalization");
 Check(!ui.Contains("View.Issues") && ui.Contains("ConfirmOpenIssues(reportPage)"),"GitHub uses native dialog without replacing report view");
 Check(ui.Contains("if (IssuesInputBlocked) return false;") && ui.Contains("_view != view || IssuesInputBlocked"),"underlying Escape and stale clicks blocked while modal");
 Check(ui.Contains("Time.unscaledTime < _nextRefresh || IssuesInputBlocked") && ui.Contains("_view == view && !IssuesInputBlocked"),"background and post-click refresh paused while modal");

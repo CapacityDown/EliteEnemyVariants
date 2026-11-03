@@ -8,6 +8,7 @@
     <Compile Include="../../EliteArchetype.cs" Link="EliteArchetype.cs" />
     <Compile Include="../../UI/EliteGuideCatalog.cs" Link="EliteGuideCatalog.cs" />
     <Compile Include="../../UI/EliteMenuPolicy.cs" Link="EliteMenuPolicy.cs" />
+    <Compile Include="../../UI/EliteMenuLayout.cs" />
     <Compile Include="../../UI/EliteMenu.Issues.cs;../../UI/EliteLocale.cs" />
     <Compile Include="../../UI/EliteMenuState.cs" Link="EliteMenuState.cs" />
     <Compile Include="../../UI/EliteReportRedactor.cs" Link="EliteReportRedactor.cs" />
