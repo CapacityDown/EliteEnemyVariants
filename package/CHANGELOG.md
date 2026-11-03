@@ -1,5 +1,5 @@
 ## 5.0.0
-- Added support for the Sunstone Update.
+- Updated compatibility for R.E.P.O. v0.5.0.
 - Added Pony enhancements: armed-player priority, tongue flanking, obstacle removal, ceiling interception and ceiling patrols before spotting a player. Can grab, lift and fling reachable players from the ceiling, releasing them if there is no clear throwing space.
 - Updated the required menu and configuration mods.
 - Added the Elites menu with enemy enhancement descriptions, host-controlled per-enemy switches and display refresh. Uses the Roles menu layout and appears below Roles and Events when RoleShuffle or Stage Flux is installed.

@@ -66,9 +66,11 @@ action-led statements describing final changes from the previous published relea
 keep distinct changes separate and summarize related feature details together.
 Preserve published history and keep `4.0.0` limited to `- First Release`.
 Do not add within-version development history, document-edit entries, technical
-implementation details, test commands, build numbers, or compatibility version
-numbers. Refer to the Sunstone Update without a numeric game version in
-compatibility explanations.
+implementation details, test commands, or build numbers. Keep compatibility
+version numbers out of release explanations except for the user's explicitly
+approved first item under `5.0.0`:
+`- Updated compatibility for R.E.P.O. v0.5.0.`
+Do not add version numbers to Stage Flux or RoleShuffle compatibility explanations.
 
 Deliver release archives only as `EliteEnemyVariants.zip`. Preserve previous
 archives in backup directories with that same basename; do not create a
