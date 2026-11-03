@@ -16,7 +16,7 @@
   "CopyDone": "已复制到剪贴板。",
   "Failed": "操作失败。请查看EliteEnemyVariants日志。",
   "Refresh": "重新获取显示数据",
-  "Issues": "打开GitHub Issues",
+  "ExternalSite": "打开外部网站",
   "Off": "关",
   "Tools": "工具",
   "StatusUnavailable": "未收到主机数据 / 主机可能未安装EliteEnemyVariants",

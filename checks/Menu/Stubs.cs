@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace UnityEngine { public static class Time { public static float unscaledTime; } }
+namespace UnityEngine { public static class Time { public static float unscaledTime; public static int frameCount; } }
 namespace ExitGames.Client.Photon { public class Hashtable : Dictionary<object, object>
 { public new object? this[object key] { get => TryGetValue(key,out var value)?value:null; set { if(value!=null)base[key]=value; } } } }
 namespace BepInEx.Configuration
@@ -45,8 +45,8 @@ namespace REPOJP.EliteEnemyVariants
         internal static string Get(EliteArchetype enemy)=>enemy switch { EliteArchetype.ApexPredator=>"Apex Predator",EliteArchetype.BirthdayBoy=>"Birthday Boy",
             EliteArchetype.CleanupCrew=>"Cleanup Crew",EliteArchetype.HeartHugger=>"Heart Hugger",EliteArchetype.ShadowChild=>"Shadow Child",_=>enemy.ToString() };
     }
-    internal sealed class EliteBugReport { internal void RememberPlayers(){} }
-    internal sealed class LoggerStub { internal void LogWarning(string text){} }
+    internal sealed class EliteBugReport { internal const string IssuesUrl = "https://github.com/fixture/EliteEnemyVariants/issues"; internal void RememberPlayers(){} }
+    internal sealed class LoggerStub { internal int Errors; internal void LogWarning(string text){} internal void LogError(Exception error){Errors++;} }
     internal sealed class EliteEnemyVariantsPlugin
     {
         internal static readonly EliteEnemyVariantsPlugin Instance=new();

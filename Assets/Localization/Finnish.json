@@ -16,7 +16,7 @@
   "CopyDone": "Kopioitu leikepöydälle.",
   "Failed": "Toiminto epäonnistui. Tarkista EliteEnemyVariants-loki.",
   "Refresh": "PÄIVITÄ NÄYTTÖTIEDOT",
-  "Issues": "AVAA GITHUB ISSUES",
+  "ExternalSite": "AVAA ULKOINEN SIVUSTO",
   "Off": "POIS",
   "Tools": "TYÖKALUT",
   "StatusUnavailable": "Isännän tietoja ei ole / isännällä ei ehkä ole EliteEnemyVariantsa",

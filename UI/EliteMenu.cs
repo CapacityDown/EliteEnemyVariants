@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace REPOJP.EliteEnemyVariants;
 
-internal sealed class EliteMenu : MonoBehaviour
+internal sealed partial class EliteMenu : MonoBehaviour
 {
     private static EliteMenu? _instance;
     private EliteMenuState _settings = null!;
@@ -58,7 +58,8 @@ internal sealed class EliteMenu : MonoBehaviour
         page.onEscapePressed += () =>
         {
             if (_page == null || _page != page) return false;
-            if (_view == View.Issues) { Switch(View.Report); return false; }
+            // MenuLib sends Escape to inactive pages as well as the native popup.
+            if (IssuesInputBlocked) return false;
             Forget(); return true;
         };
         _view = View.Guide;
@@ -74,14 +75,15 @@ internal sealed class EliteMenu : MonoBehaviour
     }
     private void Switch(View view)
     {
-        if (_page == null) return;
+        if (_page == null || IssuesInputBlocked) return;
         _view = view; _message = "";
         _page.scrollView.SetScrollPosition(0);
         Refresh();
     }
     private void Update()
     {
-        if (_page == null || Time.unscaledTime < _nextRefresh) return;
+        if (_page == null) { CloseIssuesDialog(); return; }
+        if (Time.unscaledTime < _nextRefresh || IssuesInputBlocked) return;
         _nextRefresh = Time.unscaledTime + 0.25f;
         if (Signature() != _signature) Refresh();
     }
@@ -151,13 +153,8 @@ internal sealed class EliteMenu : MonoBehaviour
                     Application.OpenURL(new Uri(report.LatestPath).AbsoluteUri);
                     _message = "Saved";
                 });
-                Button("OpenIssues", () => Switch(View.Issues));
-                break;
-            case View.Issues:
-                Text("ConfirmIssues");
-                Text(EliteBugReport.IssuesUrl);
-                Button("Browser", () => { Application.OpenURL(EliteBugReport.IssuesUrl); Switch(View.Report); });
-                Button("Cancel", () => Switch(View.Report));
+                REPOPopupPage reportPage = _page;
+                Button("OpenIssues", () => ConfirmOpenIssues(reportPage));
                 break;
         }
         Style(_page.headerTMP, 32, 18);
@@ -165,7 +162,7 @@ internal sealed class EliteMenu : MonoBehaviour
         if (_back != null) { _back.labelTMP.text = T("Back"); Style(_back.labelTMP, 20, 12); }
         foreach (var pair in _navigation)
         {
-            bool selected = pair.Key == _view || pair.Key == View.Tools && _view is View.Report or View.Issues;
+            bool selected = pair.Key == _view || pair.Key == View.Tools && _view == View.Report;
             pair.Value.labelTMP.text = (selected ? "> " : "  ") + T(pair.Key.ToString());
             pair.Value.labelTMP.color = Color.white;
             Style(pair.Value.labelTMP, 20, 12);
@@ -176,6 +173,7 @@ internal sealed class EliteMenu : MonoBehaviour
     private void Apply(List<Entry> entries)
     {
         REPOPopupPage page = _page!;
+        View view = _view;
         float width = Mathf.Clamp(page.maskRectTransform.rect.width - 20f, 260f, 520f);
         while (_rows.Count < entries.Count) _rows.Add(CreateRow(page));
         for (int i = 0; i < _rows.Count; i++)
@@ -210,10 +208,10 @@ internal sealed class EliteMenu : MonoBehaviour
             row.Button.menuButton.enabled = entry.Click != null;
             row.Button.onClick = entry.Click == null ? null : () =>
             {
-                if (_page != page) return;
+                if (_page != page || _view != view || IssuesInputBlocked) return;
                 try { entry.Click(); }
                 catch (Exception exception) { _message = "Failed"; EliteEnemyVariantsPlugin.ModLogger.LogError(exception); }
-                if (_page == page) Refresh();
+                if (_page == page && _view == view && !IssuesInputBlocked) Refresh();
             };
         }
         page.scrollView.UpdateElements();
@@ -282,9 +280,15 @@ internal sealed class EliteMenu : MonoBehaviour
         if (line.Length > 0) lines.Add(line.ToString().TrimEnd());
         return lines;
     }
-    private void Forget() { _page = null; _back = null; _rows.Clear(); _navigation.Clear(); }
-    private void OnDestroy() { if (_page != null) _page.ClosePage(true); if (_instance == this) _instance = null; }
-    private enum View { Guide, Settings, Tools, Report, Issues }
+    private void Forget() { _page = null; CloseIssuesDialog(); _back = null; _rows.Clear(); _navigation.Clear(); }
+    private void OnDestroy()
+    {
+        REPOPopupPage? page = _page;
+        Forget();
+        if (page != null) page.ClosePage(true);
+        if (_instance == this) _instance = null;
+    }
+    private enum View { Guide, Settings, Tools, Report }
     private sealed class Entry(string text, Action? click = null, bool control = false, bool title = false, bool off = false, bool space = false)
     { internal readonly string Text = text; internal readonly Action? Click = click; internal readonly bool Control = control, Title = title, Off = off, Space = space; }
     private sealed class Row(REPOButton button, REPOLabel label, REPOScrollViewElement element, EliteMenuButtonVisual visual, RectTransform focus, Image separator)

@@ -85,6 +85,11 @@ foreach (string fragment in new[]{"spacing: 1.5f","parent, 272f","parent, 240f",
     "EliteGameLocale.Code","EliteGameLocale.Language","row.DefaultFont","entry.Off","EliteMenuState.CanEdit"})
     Check(ui.Contains(fragment),"Roles layout/localization contract: "+fragment);
 Check(!ui.Contains("StartsWith(\"[OFF]"),"translated OFF does not control state detection");
+Check(!ui.Contains("View.Issues") && ui.Contains("ConfirmOpenIssues(reportPage)"),"GitHub uses native dialog without replacing report view");
+Check(ui.Contains("if (IssuesInputBlocked) return false;") && ui.Contains("_view != view || IssuesInputBlocked"),"underlying Escape and stale clicks blocked while modal");
+Check(ui.Contains("Time.unscaledTime < _nextRefresh || IssuesInputBlocked") && ui.Contains("_view == view && !IssuesInputBlocked"),"background and post-click refresh paused while modal");
+Check(ui.Contains("_page = null; CloseIssuesDialog();"),"closing Elites invalidates pending confirmation");
+Check(english.ContainsKey("ExternalSite") && !english.ContainsKey("Issues"),"native external-site heading replaces inline Issues view");
 var history = JsonDocument.Parse(File.ReadAllText(Path.Combine(args[1],"build/history.json"))).RootElement.GetProperty("entries").EnumerateArray().ToArray();
 Check(history.Length==93 && history.Select(e=>e.GetProperty("callId").GetString()).Distinct().Count()==93,"history de-duplicated");
 Check(history.Count(e=>e.GetProperty("outcome").GetString()=="failed")==19,"historical failures retained");

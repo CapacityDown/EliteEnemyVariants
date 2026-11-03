@@ -16,7 +16,7 @@
   "CopyDone": "已複製到剪貼簿。",
   "Failed": "操作失敗。請檢視EliteEnemyVariants日誌。",
   "Refresh": "重新獲取顯示資料",
-  "Issues": "開啟GitHub Issues",
+  "ExternalSite": "開啟外部網站",
   "Off": "關",
   "Tools": "工具",
   "StatusUnavailable": "未收到主機資料 / 主機可能未安裝EliteEnemyVariants",

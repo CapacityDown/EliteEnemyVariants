@@ -16,7 +16,7 @@
   "CopyDone": "تم النسخ إلى الحافظة.",
   "Failed": "فشلت العملية. راجع سجل EliteEnemyVariants.",
   "Refresh": "تحديث بيانات العرض",
-  "Issues": "فتح GITHUB ISSUES",
+  "ExternalSite": "فتح موقع خارجي",
   "Off": "إيقاف",
   "Tools": "الأدوات",
   "StatusUnavailable": "بيانات المضيف غير متاحة / قد لا يملك EliteEnemyVariants",

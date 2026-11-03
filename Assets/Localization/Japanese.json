@@ -16,7 +16,7 @@
   "CopyDone": "クリップボードにコピーしました。",
   "Failed": "操作に失敗しました。EliteEnemyVariantsのログを確認してください。",
   "Refresh": "表示データを再取得",
-  "Issues": "GitHub Issuesを開く",
+  "ExternalSite": "外部サイトを開く",
   "Off": "オフ",
   "Tools": "ツール",
   "StatusUnavailable": "ホストのデータ未受信 / 未導入の可能性あり",

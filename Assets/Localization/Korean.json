@@ -16,7 +16,7 @@
   "CopyDone": "클립보드에 복사했습니다.",
   "Failed": "작업에 실패했습니다. EliteEnemyVariants 로그를 확인하세요.",
   "Refresh": "표시 데이터 새로 고침",
-  "Issues": "GitHub Issues 열기",
+  "ExternalSite": "외부 사이트 열기",
   "Off": "끄기",
   "Tools": "도구",
   "StatusUnavailable": "호스트 데이터 없음 / EliteEnemyVariants이 없을 수 있음",

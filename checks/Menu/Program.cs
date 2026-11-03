@@ -16,6 +16,7 @@ static class Program
     { yield return type;foreach(var nested in type.NestedTypes)foreach(var child in Nested(nested))yield return child; }
     static void Main(string[] args)
     {
+        EliteMenu.CheckIssues(Check);
         foreach(bool ready in new[]{false,true}) foreach(bool multiplayer in new[]{false,true})
         foreach(bool room in new[]{false,true}) foreach(bool master in new[]{false,true})
             Check(EliteMenuPolicy.CanEdit(ready,multiplayer,room,master)==(ready&&(room?master:!multiplayer)),"authority matrix");
@@ -87,6 +88,10 @@ static class Program
 
         using ModuleDefinition mod=ModuleDefinition.ReadModule(args[0]);
         using ModuleDefinition game=ModuleDefinition.ReadModule(args[1]);
+        var nativePopup = game.Types.Single(t=>t.Name=="MenuPageTwoOptions");
+        Check(nativePopup.Methods.Single(m=>m.Name=="Update").Body.Instructions.Any(i=>i.Operand is MethodReference call && call.Name=="ButtonEventOption2"),"native Escape routes to cancel");
+        foreach (string name in new[]{"ButtonEventOption1","ButtonEventOption2"})
+            Check(nativePopup.Methods.Single(m=>m.Name==name).Body.Instructions.Any(i=>i.Operand is MethodReference call && call.Name=="PageReactivatePageUnderThisPage"),"native choice restores underlying page: "+name);
         var ui=mod.Types.Where(t=>t.Name.StartsWith("EliteMenu")||t.Name=="EliteBugReport").SelectMany(Nested).ToArray();
         foreach(var method in ui.SelectMany(t=>t.Methods).Where(m=>m.HasBody))foreach(var instruction in method.Body.Instructions)
         {

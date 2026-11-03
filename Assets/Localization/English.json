@@ -16,7 +16,7 @@
   "CopyDone": "Copied to clipboard.",
   "Failed": "Operation failed. Check the EliteEnemyVariants log.",
   "Refresh": "REFRESH DISPLAY DATA",
-  "Issues": "OPEN GITHUB ISSUES",
+  "ExternalSite": "OPEN EXTERNAL SITE",
   "Off": "OFF",
   "Tools": "TOOLS",
   "StatusUnavailable": "Host data unavailable / host may not have EliteEnemyVariants",

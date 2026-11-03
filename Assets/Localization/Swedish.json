@@ -16,7 +16,7 @@
   "CopyDone": "Kopierat till urklipp.",
   "Failed": "Åtgärden misslyckades. Kontrollera EliteEnemyVariants-loggen.",
   "Refresh": "UPPDATERA VISNINGSDATA",
-  "Issues": "ÖPPNA GITHUB ISSUES",
+  "ExternalSite": "ÖPPNA EXTERN WEBBPLATS",
   "Off": "AV",
   "Tools": "VERKTYG",
   "StatusUnavailable": "Värddata saknas / värden kanske inte har EliteEnemyVariants",

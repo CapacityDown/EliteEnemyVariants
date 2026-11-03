@@ -16,7 +16,7 @@
   "CopyDone": "Скопійовано в буфер обміну.",
   "Failed": "Операція не вдалася. Перевірте журнал EliteEnemyVariants.",
   "Refresh": "ОНОВИТИ ДАНІ",
-  "Issues": "ВІДКРИТИ GITHUB ISSUES",
+  "ExternalSite": "ВІДКРИТИ ЗОВНІШНІЙ САЙТ",
   "Off": "ВИМК",
   "Tools": "ІНСТРУМЕНТИ",
   "StatusUnavailable": "Немає даних хоста / можливо, EliteEnemyVariants не встановлено",
