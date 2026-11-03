@@ -99,8 +99,8 @@ foreach (MethodDefinition method in type.Methods.Where(m => m.HasBody))
 Check(fieldRefs > 150, "all enemy field refs were inspected");
 Check(delegates >= 20, "all enemy method delegates were inspected");
 Check(patches >= 65, "common and dedicated patches were inspected");
-Check(mod.Assembly.Name.Version == new Version(5, 0, 0, 0), "assembly version");
-Check((string)ModType("EliteEnemyVariantsPlugin").Fields.Single(f => f.Name == "PluginVersion").Constant == "5.0.0", "plugin version");
+Check(mod.Assembly.Name.Version == new Version(5, 0, 1, 0), "assembly version");
+Check((string)ModType("EliteEnemyVariantsPlugin").Fields.Single(f => f.Name == "PluginVersion").Constant == "5.0.1", "plugin version");
 Check((int)ModType("EliteEnemyVariantsCompatibilityApi").Fields.Single(f => f.Name == "ApiVersion").Constant == 1, "public compatibility API unchanged");
 Check(!mod.AssemblyReferences.Any(r => r.Name is "RoleShuffle" or "StageRoles" or "StagePhysicsEvents"), "no required cross-mod assembly");
 Check(!mod.GetTypes().SelectMany(t => t.Methods).Any(m => m.CustomAttributes.Any(a => a.AttributeType.Name == "PunRPC")), "no custom client RPC");

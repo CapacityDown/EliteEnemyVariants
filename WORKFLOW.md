@@ -8,14 +8,14 @@ instructions, not player-facing release documentation.
 
 - Repository: `https://github.com/CapacityDown/EliteEnemyVariants.git`.
 - Integration branch: `main`.
-- Current development version: `5.0.0`.
-- Current development branch: `version/5.0.0`.
+- Current development version: `5.0.1`.
+- Current development branch: `version/5.0.1`.
 - Keep the existing HTTPS remote and configured Git Credential Manager
   authentication. Do not copy tokens, extract credentials, or change global
   authentication settings.
-- The branch was created from the existing `main` commit
-  `e74293cffa47ce7732c30cba107a0e4e41c762ac`. Preserve that already-published
-  history; do not reset `main` to simulate an earlier release boundary.
+- The current branch starts from the completed `5.0.0` integration on `main`,
+  `245517a448cc180629cf8656cb108256dc6cfa52`. Preserve the earlier version branch
+  and published history; do not reset `main` to simulate a release boundary.
 
 ## Ordinary changes
 
@@ -38,6 +38,14 @@ work, then merge its branch into `main`. Push and verify `main` before creating
 `version/<new-version>` from that updated integration branch. Switch to the new
 branch and make version-number changes there. Do not advance the version
 without a user request or merge unfinished work merely to complete this sequence.
+
+On 2026-11-03 the user started `5.0.1`. The `5.0.0` Release build 102, package,
+and `EliteEnemyVariants.zip` were verified and preserved before integration.
+Continue the build counter across versions; do not reset it. Until a player-facing
+change is made, keep the existing changelog intact and do not add an empty `5.0.1`
+heading or a version-bump entry. Build and deploy development DLLs separately from
+release ZIP generation. Keep the verified `5.0.0` ZIP until a new release is ready;
+do not bypass the release packager's version/changelog validation.
 
 Preserve previous version branches and release artifacts. Do not delete branches
 or rewrite published history as part of an ordinary version change. Repository

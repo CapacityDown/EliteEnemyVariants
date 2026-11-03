@@ -66,13 +66,13 @@ Check(!EliteFontMaterial.Ensure(null) && !EliteFontMaterial.Ensure(new()), "miss
 Shader.Available = null; Check(!EliteFontMaterial.Ensure(new() {atlasTexture=new()}), "missing shader safe");
 
 using var mod = ModuleDefinition.ReadModule(args[0]);
-Check(mod.Assembly.Name.Version.ToString() == "5.0.0.0", "stable assembly identity");
+Check(mod.Assembly.Name.Version.ToString() == "5.0.1.0", "assembly release version");
 string Attribute(string name) => (string)mod.Assembly.CustomAttributes.Single(a=>a.AttributeType.Name==name).ConstructorArguments[0].Value;
 int build = int.Parse((string)mod.Assembly.CustomAttributes.Single(a=>a.AttributeType.Name=="AssemblyMetadataAttribute" &&
     (string)a.ConstructorArguments[0].Value=="BuildNumber").ConstructorArguments[1].Value,CultureInfo.InvariantCulture);
 Check(build > 93, "historical attempts included");
-Check(Attribute("AssemblyFileVersionAttribute") == "5.0.0."+build, "file build number");
-Check(Attribute("AssemblyInformationalVersionAttribute") == "5.0.0+build."+build, "informational build number");
+Check(Attribute("AssemblyFileVersionAttribute") == "5.0.1."+build, "file build number");
+Check(Attribute("AssemblyInformationalVersionAttribute") == "5.0.1+build."+build, "informational build number");
 Check(int.Parse(File.ReadAllText(Path.Combine(args[1],"build/number.txt"))) == build, "counter matches binary");
 foreach (var language in codes.Values)
     Check(mod.Resources.Any(r=>r.Name=="REPOJP.EliteEnemyVariants.Localization."+language+".json"), "embedded catalog "+language);

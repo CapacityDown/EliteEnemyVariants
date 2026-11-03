@@ -17,7 +17,7 @@ public sealed class EliteEnemyVariantsPlugin : BaseUnityPlugin
 {
     public const string PluginGuid = "REPOJP.EliteEnemyVariants";
     public const string PluginName = "Elite Enemy Variants";
-    public const string PluginVersion = "5.0.0";
+    public const string PluginVersion = "5.0.1";
     public const string RepoConfigGuid = "nickklmao.repoconfig";
 
     private Harmony? _harmony;

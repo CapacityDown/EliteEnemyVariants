@@ -7,7 +7,7 @@
     <AssemblyName>EliteEnemyVariants</AssemblyName>
     <RootNamespace>REPOJP.EliteEnemyVariants</RootNamespace>
     <Authors>REPOJP</Authors>
-    <Version>5.0.0</Version>
+    <Version>5.0.1</Version>
     <CopyFilesToPluginOutputDirectoryOnBuild>false</CopyFilesToPluginOutputDirectoryOnBuild>
     <CopyFilesToPluginOutputDirectoryOnRun>false</CopyFilesToPluginOutputDirectoryOnRun>
   </PropertyGroup>

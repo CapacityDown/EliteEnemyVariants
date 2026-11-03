@@ -34,9 +34,9 @@
       <Output TaskParameter="Number" PropertyName="EevBuildNumber" />
     </EevBuildStamp>
     <PropertyGroup>
-      <AssemblyVersion>5.0.0.0</AssemblyVersion>
-      <FileVersion>5.0.0.$(EevBuildNumber)</FileVersion>
-      <InformationalVersion>5.0.0+build.$(EevBuildNumber)</InformationalVersion>
+      <AssemblyVersion>5.0.1.0</AssemblyVersion>
+      <FileVersion>5.0.1.$(EevBuildNumber)</FileVersion>
+      <InformationalVersion>5.0.1+build.$(EevBuildNumber)</InformationalVersion>
       <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     </PropertyGroup>
     <ItemGroup><AssemblyMetadata Include="BuildNumber" Value="$(EevBuildNumber)" /></ItemGroup>

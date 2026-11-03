@@ -1,6 +1,6 @@
 {
   "name": "EliteEnemyVariants",
-  "version_number": "5.0.0",
+  "version_number": "5.0.1",
   "website_url": "https://github.com/CapacityDown/EliteEnemyVariants/issues",
   "description": "【HostOnlyMOD】Enhances enemy behavior and abilities with host-only installation. ホストのみの導入で、敵の挙動や能力を強化します。",
   "dependencies": [
