@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using MenuLib;
 using MenuLib.MonoBehaviors;
 using TMPro;
@@ -15,6 +16,9 @@ internal sealed class EliteMenu : MonoBehaviour
     private REPOPopupPage? _page;
     private readonly List<Row> _rows = new();
     private readonly Dictionary<View, REPOButton> _navigation = new();
+    private REPOButton? _back;
+    private EliteLanguage _language;
+    private string T(string key) => EliteText.Get(key, _language);
     private View _view;
     private string _signature = "", _message = "";
     private float _nextRefresh;
@@ -34,20 +38,22 @@ internal sealed class EliteMenu : MonoBehaviour
     {
         if (_page != null) return;
         REPOPopupPage page = MenuAPI.CreateREPOPopupPage("Elites", REPOPopupPage.PresetSide.Right,
-            shouldCachePage: false, pageDimmerVisibility: true, spacing: 2f);
+            shouldCachePage: false, pageDimmerVisibility: true, spacing: 1.5f);
         _page = page; _rows.Clear(); _navigation.Clear(); _message = "";
         var padding = page.maskPadding; padding.top = 24f; padding.bottom = 0; page.maskPadding = padding;
         page.AddElement(parent =>
         {
-            Navigation(View.Guide, "ENHANCEMENT GUIDE", parent, 268f);
-            Navigation(View.Settings, "ENEMY SETTINGS", parent, 230f);
-            Navigation(View.Tools, "TOOLS", parent, 192f);
-            REPOLabel version = MenuAPI.CreateREPOLabel("EliteEnemyVariants v" + EliteEnemyVariantsPlugin.PluginVersion, parent, new Vector2(108, 72));
-            version.rectTransform.sizeDelta = new Vector2(190, 50);
-            version.labelTMP.rectTransform.sizeDelta = new Vector2(190, 50);
-            version.labelTMP.fontSize = 15; version.labelTMP.textWrappingMode = TextWrappingModes.Normal;
+            Navigation(View.Guide, "", parent, 272f);
+            Navigation(View.Settings, "", parent, 240f);
+            Navigation(View.Tools, "", parent, 208f);
+            REPOLabel version = MenuAPI.CreateREPOLabel(EliteBuild.Label, parent, new Vector2(108, 54));
+            version.rectTransform.sizeDelta = new Vector2(190, 24);
+            version.labelTMP.rectTransform.sizeDelta = new Vector2(190, 24);
+            version.labelTMP.fontSize = 16; version.labelTMP.textWrappingMode = TextWrappingModes.NoWrap;
+            version.labelTMP.enableAutoSizing = true; version.labelTMP.fontSizeMin = 10; version.labelTMP.fontSizeMax = 16;
+            version.labelTMP.color = new Color(0.72f, 0.72f, 0.72f, 0.9f);
             version.labelTMP.alignment = TextAlignmentOptions.Left;
-            MenuAPI.CreateREPOButton("Back", () => { Forget(); page.ClosePage(true); }, parent, new Vector2(66, 18));
+            _back = MenuAPI.CreateREPOButton("Back", () => { Forget(); page.ClosePage(true); }, parent, new Vector2(66, 18));
         });
         page.onEscapePressed += () =>
         {
@@ -56,14 +62,14 @@ internal sealed class EliteMenu : MonoBehaviour
             Forget(); return true;
         };
         _view = View.Guide;
-        Refresh();
-        page.OpenPage(openOnTop: false);
+        try { Refresh(); page.OpenPage(openOnTop: false); }
+        catch (Exception exception) { Forget(); page.ClosePage(true); EliteEnemyVariantsPlugin.ModLogger.LogError(exception); }
     }
     private void Navigation(View view, string title, Transform parent, float y)
     {
         REPOButton button = MenuAPI.CreateREPOButton(title, () => Switch(view), parent, new Vector2(108, y));
         button.overrideButtonSize = new Vector2(190, 32);
-        button.labelTMP.alignment = TextAlignmentOptions.Left; button.labelTMP.fontSize = 18;
+        button.labelTMP.alignment = TextAlignmentOptions.Left; button.labelTMP.fontSize = 20;
         _navigation.Add(view, button);
     }
     private void Switch(View view)
@@ -76,84 +82,93 @@ internal sealed class EliteMenu : MonoBehaviour
     private void Update()
     {
         if (_page == null || Time.unscaledTime < _nextRefresh) return;
-        _nextRefresh = Time.unscaledTime + 0.5f;
+        _nextRefresh = Time.unscaledTime + 0.25f;
         if (Signature() != _signature) Refresh();
     }
     private string Signature()
     {
         bool available = _settings.TryRead(out long mask, out bool active);
-        return $"{_view}:{EliteMenuState.CanEdit}:{available}:{mask}:{active}:{_settings.Status}";
+        return $"{EliteGameLocale.Code}:{_page?.maskRectTransform.rect.width}:{_view}:{EliteMenuState.CanEdit}:{available}:{mask}:{active}:{_settings.Status}";
     }
     private void Refresh()
     {
         if (_page == null) return;
+        _language = EliteGameLocale.Language;
         List<Entry> entries = new();
-        void Text(string text, bool title = false) => entries.Add(new Entry(text, title: title));
-        void Button(string text, Action action, bool allowed = true) => entries.Add(new Entry(text, allowed ? action : null, true));
+        void Text(string key, bool title = false)
+        {
+            string text = T(key);
+            if (title) entries.Add(new Entry(text, title: true));
+            else foreach (string line in Wrap(text)) entries.Add(new Entry(line));
+        }
+        void Button(string key, Action action, bool allowed = true, bool off = false, bool literal = false) =>
+            entries.Add(new Entry(literal ? key : T(key), allowed ? action : null, true, off: off));
         bool editable = EliteMenuState.CanEdit;
         bool available = _settings.TryRead(out long mask, out bool active);
         if (_message.Length > 0) Text(_message);
         switch (_view)
         {
             case View.Guide:
-                Text("Enhanced enemies keep their own signature behavior and gain new ways to pressure players. The descriptions below use default settings; detailed values can be changed in REPOConfig.");
-                Text("Green flashes identify Enhanced enemies. Their defeated-enemy orbs are worth 1.5 times the usual value. No enemy locations or encounter counts are revealed here.");
+                Text("GuideIntro"); Text("Markers");
                 foreach (EliteArchetype enemy in EliteGuideCatalog.Enemies)
-                { Text(EnemyDisplayNameResolver.Get(enemy), true); Text(EliteGuideCatalog.Description(enemy)); }
+                { entries.Add(new Entry("", space: true)); Text(EnemyDisplayNameResolver.Get(enemy), true); Text("Enemy." + enemy); }
                 break;
             case View.Settings:
-                Text("Changes affect future enhancement draws. Existing enemies and already selected encounters remain unchanged. Chances and detailed settings are available in REPOConfig.");
-                Text(editable ? "You are editing the host's enhancement selection." : "Only the host can change enhancement settings.");
-                if (!available) { Text(_settings.Status); break; }
-                if (!active) Text("EliteEnemyVariants is disabled in General settings. These switches are saved for when it is enabled.");
+                Text("SelectionHelp"); Text(editable ? "HostEdit" : "GuestRead");
+                if (!available) { Text(StatusKey()); break; }
+                if (!active) Text("Disabled");
                 foreach (EliteArchetype enemy in EliteGuideCatalog.Enemies)
                 {
                     EliteArchetype captured = enemy;
                     bool on = (mask & (1L << (int)enemy)) != 0;
-                    Button($"[{(on ? "ON" : "OFF")}] {EnemyDisplayNameResolver.Get(enemy)}", () =>
+                    Button($"[{T(on ? "On" : "Off")}] {EnemyDisplayNameResolver.Get(enemy)}", () =>
                     {
                         // Recheck current authority and config at click time, not only when rendering.
                         if (EliteMenuState.CanEdit && _settings.TryRead(out long current, out _))
                             _settings.SetEnabled(captured, (current & (1L << (int)captured)) == 0);
-                    }, editable);
+                    }, editable, !on, true);
                 }
                 break;
             case View.Tools:
-                Text("DISPLAY STATUS", true); Text(_settings.Status);
-                Button("REFRESH DISPLAY DATA", () => { _settings.RefreshDisplay(); _message = "Display refresh requested. No enemies are changed or reselected."; });
-                Text("Elites has no persistent HUD. There are no enemy counters or positions to edit.");
-                Button("REPORT A PROBLEM", () => Switch(View.Report));
+                Text("Status", true); Text(StatusKey());
+                Button("Refresh", () => { _settings.RefreshDisplay(); _message = "RefreshDone"; });
+                Text("NoHud");
+                Button("ReportButton", () => Switch(View.Report));
                 break;
             case View.Report:
-                Text("Create a report, review it, and paste it into GitHub Issues. Personal information is partly masked. Nothing is uploaded automatically.");
-                Button("COPY REPORT", () =>
+                Text("ReportHelp");
+                Button("Copy", () =>
                 {
                     EliteBugReport report = EliteEnemyVariantsPlugin.Instance.BugReport;
                     report.Create(_settings);
                     GUIUtility.systemCopyBuffer = report.LatestText;
-                    _message = "Report copied and saved to BepInEx/EliteEnemyVariantsReports. Add reproduction steps before sharing.";
+                    _message = "CopyDone";
                 });
-                Button("OPEN SAVED REPORT", () =>
+                Button("OpenReport", () =>
                 {
                     EliteBugReport report = EliteEnemyVariantsPlugin.Instance.BugReport;
                     report.Create(_settings);
                     Application.OpenURL(new Uri(report.LatestPath).AbsoluteUri);
-                    _message = "Report saved. Review it before sharing.";
+                    _message = "Saved";
                 });
-                Button("OPEN GITHUB ISSUES", () => Switch(View.Issues));
+                Button("OpenIssues", () => Switch(View.Issues));
                 break;
             case View.Issues:
-                Text("Open EliteEnemyVariants Issues on GitHub in your browser? A GitHub account is required to submit a report. Nothing will be sent automatically.");
+                Text("ConfirmIssues");
                 Text(EliteBugReport.IssuesUrl);
-                Button("OPEN IN BROWSER", () => { Application.OpenURL(EliteBugReport.IssuesUrl); Switch(View.Report); });
-                Button("CANCEL", () => Switch(View.Report));
+                Button("Browser", () => { Application.OpenURL(EliteBugReport.IssuesUrl); Switch(View.Report); });
+                Button("Cancel", () => Switch(View.Report));
                 break;
         }
-        _page.headerTMP.text = _view switch { View.Guide => "Enhancement Guide", View.Settings => "Enemy Settings", View.Tools => "Tools", View.Report => "Bug Report", _ => "GitHub Issues" };
+        Style(_page.headerTMP, 32, 18);
+        _page.headerTMP.text = T(_view.ToString());
+        if (_back != null) { _back.labelTMP.text = T("Back"); Style(_back.labelTMP, 20, 12); }
         foreach (var pair in _navigation)
         {
             bool selected = pair.Key == _view || pair.Key == View.Tools && _view is View.Report or View.Issues;
-            pair.Value.labelTMP.color = selected ? new Color(0.5f, 1f, 0.6f) : Color.white;
+            pair.Value.labelTMP.text = (selected ? "> " : "  ") + T(pair.Key.ToString());
+            pair.Value.labelTMP.color = Color.white;
+            Style(pair.Value.labelTMP, 20, 12);
         }
         Apply(entries);
         _signature = Signature();
@@ -167,32 +182,43 @@ internal sealed class EliteMenu : MonoBehaviour
         {
             Row row = _rows[i];
             row.Element.visibility = i < entries.Count;
-            if (i >= entries.Count) continue;
+            if (i >= entries.Count) { row.Separator.gameObject.SetActive(false); continue; }
             Entry entry = entries[i];
             TMP_Text text = row.Label.labelTMP;
             text.text = entry.Text; text.richText = false; text.fontSize = entry.Control || entry.Title ? 20 : 18;
+            text.font = EliteGuideFont.ForLanguage(row.DefaultFont, _language);
+            EliteTextLayout.Apply(text, _language);
             text.fontStyle = entry.Title ? FontStyles.Bold : FontStyles.Normal;
-            text.textWrappingMode = TextWrappingModes.Normal; text.enableAutoSizing = false; text.overflowMode = TextOverflowModes.Truncate;
-            float height = Mathf.Max(entry.Control ? 40f : 30f, text.GetPreferredValues(entry.Text, width - 22f, 0).y + 14f);
-            text.alignment = TextAlignmentOptions.Left;
+            text.textWrappingMode = TextWrappingModes.NoWrap; text.enableAutoSizing = entry.Control || entry.Title;
+            text.fontSizeMin = 12; text.fontSizeMax = entry.Control || entry.Title ? 20 : 18;
+            text.overflowMode = TextOverflowModes.Overflow;
+            float height = entry.Space ? 10 : entry.Control ? 32 : entry.Title ? 30 : 25;
+            text.alignment = _language == EliteLanguage.Arabic ? TextAlignmentOptions.Right : TextAlignmentOptions.Left;
             text.color = entry.Control && entry.Click == null ? new Color(0.5f, 0.52f, 0.55f) : Color.white;
             row.Button.overrideButtonSize = new Vector2(width, height);
-            row.Button.rectTransform.sizeDelta = row.Focus.sizeDelta = new Vector2(width, height);
-            row.Label.rectTransform.anchoredPosition = new Vector2(10, 0);
-            row.Label.rectTransform.sizeDelta = text.rectTransform.sizeDelta = new Vector2(width - 22f, height);
-            row.Visual.Configure(entry.Control, entry.Click != null, entry.Text.StartsWith("[OFF]", StringComparison.Ordinal));
+            row.Button.rectTransform.sizeDelta = new Vector2(width, height);
+            float focusHeight = entry.Control ? height : Mathf.Max(12, height * 0.5f);
+            row.Focus.sizeDelta = new Vector2(width, focusHeight);
+            row.Focus.anchoredPosition = new Vector2(0, (height - focusHeight) * 0.5f);
+            float padding = entry.Control ? 12 : 0;
+            row.Label.rectTransform.anchoredPosition = new Vector2(padding, 0);
+            row.Label.rectTransform.sizeDelta = text.rectTransform.sizeDelta = new Vector2(width - padding * 2, height);
+            row.Visual.Configure(entry.Control, entry.Click != null, entry.Off);
+            row.Separator.gameObject.SetActive(_view != View.Guide && i > 0 && entry.Control && !entries[i - 1].Control);
+            row.Separator.rectTransform.sizeDelta = new Vector2(width, 1);
+            row.Separator.rectTransform.anchoredPosition = new Vector2(0, height + 2);
             row.Button.menuButton.enabled = entry.Click != null;
             row.Button.onClick = entry.Click == null ? null : () =>
             {
                 if (_page != page) return;
                 try { entry.Click(); }
-                catch (Exception exception) { _message = "Operation failed. Check the EliteEnemyVariants log."; EliteEnemyVariantsPlugin.ModLogger.LogError(exception); }
+                catch (Exception exception) { _message = "Failed"; EliteEnemyVariantsPlugin.ModLogger.LogError(exception); }
                 if (_page == page) Refresh();
             };
         }
         page.scrollView.UpdateElements();
     }
-    private static Row CreateRow(REPOPopupPage page)
+    private Row CreateRow(REPOPopupPage page)
     {
         REPOButton button = null!; REPOLabel label = null!;
         page.AddElementToScrollView(parent =>
@@ -200,7 +226,7 @@ internal sealed class EliteMenu : MonoBehaviour
             button = MenuAPI.CreateREPOButton("", () => { }, parent, Vector2.zero);
             label = MenuAPI.CreateREPOLabel("", button.rectTransform, Vector2.zero);
             return button.rectTransform;
-        }, topPadding: 4f, bottomPadding: 4f);
+        }, topPadding: _rows.Count == 0 ? 20f : 3f, bottomPadding: 3f);
         button.labelTMP.gameObject.SetActive(false);
         button.menuButton.customHoverArea = true; button.menuButton.resizeButton = false;
         label.labelTMP.raycastTarget = false;
@@ -211,15 +237,56 @@ internal sealed class EliteMenu : MonoBehaviour
         button.menuButton.rectTransformSelection = focusRect;
         EliteMenuButtonVisual visual = button.gameObject.AddComponent<EliteMenuButtonVisual>();
         visual.Initialize(button, label.labelTMP);
-        return new Row(button, label, button.GetComponent<REPOScrollViewElement>(), visual, focusRect);
+        GameObject divider = new("Section Divider", typeof(RectTransform), typeof(Image));
+        divider.transform.SetParent(button.rectTransform, false);
+        Image separator = divider.GetComponent<Image>(); separator.raycastTarget = false;
+        separator.color = new Color(0.65f, 0.4f, 0.16f, 0.6f); BottomLeft(separator.rectTransform);
+        divider.SetActive(false);
+        return new Row(button, label, button.GetComponent<REPOScrollViewElement>(), visual, focusRect, separator);
     }
     private static void BottomLeft(RectTransform rect)
     { rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.zero; rect.anchoredPosition = Vector2.zero; }
-    private void Forget() { _page = null; _rows.Clear(); _navigation.Clear(); }
+    private void Style(TMP_Text text, float max, float min)
+    {
+        text.font = EliteGuideFont.ForLanguage(text.font, _language); EliteTextLayout.Apply(text, _language);
+        text.alignment = _language == EliteLanguage.Arabic ? TextAlignmentOptions.Right : TextAlignmentOptions.Left;
+        text.textWrappingMode = TextWrappingModes.NoWrap; text.enableAutoSizing = true;
+        text.fontSizeMax = max; text.fontSizeMin = min;
+    }
+    private string StatusKey() => _settings.Status switch
+    {
+        "Host - sharing enhancement settings." => "StatusHost",
+        "Single player - local enhancement settings." => "StatusSolo",
+        "Connected - host enhancement settings received." => "StatusGuest",
+        _ => "StatusUnavailable"
+    };
+    private IReadOnlyList<string> Wrap(string text)
+    {
+        if (_rows.Count == 0) _rows.Add(CreateRow(_page!));
+        TMP_Text measure = _rows[0].Label.labelTMP;
+        measure.font = EliteGuideFont.ForLanguage(_rows[0].DefaultFont, _language);
+        EliteTextLayout.Apply(measure, _language);
+        measure.fontSize = 18; measure.fontStyle = FontStyles.Normal; measure.enableAutoSizing = false;
+        measure.textWrappingMode = TextWrappingModes.NoWrap;
+        float width = Mathf.Clamp(_page!.maskRectTransform.rect.width - 20f, 260f, 520f);
+        List<string> lines = new(); StringBuilder line = new();
+        foreach (string token in EliteTextLayout.Tokens(text))
+        {
+            if (token == "\n") { if (line.Length > 0) lines.Add(line.ToString().TrimEnd()); line.Clear(); continue; }
+            if (line.Length == 0 && string.IsNullOrWhiteSpace(token)) continue;
+            string candidate = line + token;
+            if (line.Length > 0 && measure.GetPreferredValues(candidate).x > width)
+            { lines.Add(line.ToString().TrimEnd()); line.Clear(); }
+            if (line.Length > 0 || !string.IsNullOrWhiteSpace(token)) line.Append(token);
+        }
+        if (line.Length > 0) lines.Add(line.ToString().TrimEnd());
+        return lines;
+    }
+    private void Forget() { _page = null; _back = null; _rows.Clear(); _navigation.Clear(); }
     private void OnDestroy() { if (_page != null) _page.ClosePage(true); if (_instance == this) _instance = null; }
     private enum View { Guide, Settings, Tools, Report, Issues }
-    private sealed class Entry(string text, Action? click = null, bool control = false, bool title = false)
-    { internal readonly string Text = text; internal readonly Action? Click = click; internal readonly bool Control = control, Title = title; }
-    private sealed class Row(REPOButton button, REPOLabel label, REPOScrollViewElement element, EliteMenuButtonVisual visual, RectTransform focus)
-    { internal readonly REPOButton Button = button; internal readonly REPOLabel Label = label; internal readonly REPOScrollViewElement Element = element; internal readonly EliteMenuButtonVisual Visual = visual; internal readonly RectTransform Focus = focus; }
+    private sealed class Entry(string text, Action? click = null, bool control = false, bool title = false, bool off = false, bool space = false)
+    { internal readonly string Text = text; internal readonly Action? Click = click; internal readonly bool Control = control, Title = title, Off = off, Space = space; }
+    private sealed class Row(REPOButton button, REPOLabel label, REPOScrollViewElement element, EliteMenuButtonVisual visual, RectTransform focus, Image separator)
+    { internal readonly REPOButton Button = button; internal readonly REPOLabel Label = label; internal readonly REPOScrollViewElement Element = element; internal readonly EliteMenuButtonVisual Visual = visual; internal readonly RectTransform Focus = focus; internal readonly Image Separator = separator; internal readonly TMP_FontAsset DefaultFont = label.labelTMP.font; }
 }

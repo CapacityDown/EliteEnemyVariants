@@ -1,0 +1,47 @@
+<Project>
+  <PropertyGroup><EevCounterDirectory Condition="'$(EevCounterDirectory)' == ''">$(MSBuildProjectDirectory)/build</EevCounterDirectory></PropertyGroup>
+  <UsingTask TaskName="EevBuildStamp" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)/Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Root ParameterType="System.String" Required="true" />
+      <Number ParameterType="System.Int32" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" /><Using Namespace="System.IO" /><Using Namespace="System.Text" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+        // Allocate BEFORE compilation. A failed/interrupted build still consumes its number.
+        string counter = Path.Combine(Root, "number.txt");
+        FileStream reserved = null;
+        for (int retry = 0; reserved == null; retry++) {
+          try { reserved = new FileStream(counter, FileMode.Open, FileAccess.ReadWrite, FileShare.None); }
+          catch (IOException) { if (retry >= 100) throw; System.Threading.Thread.Sleep(50); }
+        }
+        using (var file = reserved) {
+          string previous;
+          using (var reader = new StreamReader(file, Encoding.UTF8, true, 1024, true)) previous = reader.ReadToEnd();
+          Number = checked(int.Parse(previous.Trim(), System.Globalization.CultureInfo.InvariantCulture) + 1);
+          if (Number > 65534) throw new InvalidOperationException("Review file-version numbering before build 65535.");
+          byte[] bytes = Encoding.UTF8.GetBytes(Number.ToString(System.Globalization.CultureInfo.InvariantCulture) + "\n");
+          file.Position = 0; file.Write(bytes, 0, bytes.Length); file.SetLength(bytes.Length); file.Flush(true);
+          // Counter remains consumed even if logging fails. Never silently reuse a number.
+          File.AppendAllText(Path.Combine(Root, "attempts.tsv"), Number + "\t" + DateTime.UtcNow.ToString("O") + "\tstarted\n");
+        }
+        Log.LogMessage(Microsoft.Build.Framework.MessageImportance.High, "EEV build-{0} reserved (including failed attempts).", Number);
+      ]]></Code>
+    </Task>
+  </UsingTask>
+  <Target Name="ReserveEevBuildNumber" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+    <EevBuildStamp Root="$(EevCounterDirectory)">
+      <Output TaskParameter="Number" PropertyName="EevBuildNumber" />
+    </EevBuildStamp>
+    <PropertyGroup>
+      <AssemblyVersion>5.0.0.0</AssemblyVersion>
+      <FileVersion>5.0.0.$(EevBuildNumber)</FileVersion>
+      <InformationalVersion>5.0.0+build.$(EevBuildNumber)</InformationalVersion>
+      <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    </PropertyGroup>
+    <ItemGroup><AssemblyMetadata Include="BuildNumber" Value="$(EevBuildNumber)" /></ItemGroup>
+  </Target>
+  <Target Name="RecordEevBuildSuccess" AfterTargets="Build" Condition="'$(EevBuildNumber)' != ''">
+    <WriteLinesToFile File="$(EevCounterDirectory)/attempts.tsv" Lines="$(EevBuildNumber)&#9;$([System.DateTime]::UtcNow.ToString('O'))&#9;succeeded" Overwrite="false" />
+  </Target>
+</Project>

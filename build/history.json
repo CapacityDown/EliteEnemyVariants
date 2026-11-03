@@ -1,0 +1,564 @@
+{
+  "cutoff": "2026-11-03T09:00:00.000Z",
+  "scope": "Recorded main EliteEnemyVariants build attempts; failed attempts included; test builds and repeated transcript copies excluded. Historical binaries are not rewritten.",
+  "entries": [
+    {
+      "number": 1,
+      "timestamp": "2026-08-14T09:33:42.320Z",
+      "outcome": "failed",
+      "callId": "call_JqmxIbvPNccCmFr0XEBbT0Jz"
+    },
+    {
+      "number": 2,
+      "timestamp": "2026-08-14T09:34:03.939Z",
+      "outcome": "succeeded",
+      "callId": "call_pd6jOq3UQfh2LDvDAtR1NErk"
+    },
+    {
+      "number": 3,
+      "timestamp": "2026-08-14T09:41:13.107Z",
+      "outcome": "succeeded",
+      "callId": "call_A7cYnouygQ3vCOekPsqHeWyb"
+    },
+    {
+      "number": 4,
+      "timestamp": "2026-08-14T09:44:39.982Z",
+      "outcome": "succeeded",
+      "callId": "call_nZ4nmPfxmYJVB8VO25q4mDVG"
+    },
+    {
+      "number": 5,
+      "timestamp": "2026-08-14T09:47:02.684Z",
+      "outcome": "succeeded",
+      "callId": "call_ugRgDss01wUVzDES8HmdU5nd"
+    },
+    {
+      "number": 6,
+      "timestamp": "2026-08-14T09:49:11.766Z",
+      "outcome": "succeeded",
+      "callId": "call_WAnuSxz57r4FDaof3cpzGAnE"
+    },
+    {
+      "number": 7,
+      "timestamp": "2026-08-14T09:51:53.879Z",
+      "outcome": "failed",
+      "callId": "call_ShDJK0wjss3enbTY0plctP1T"
+    },
+    {
+      "number": 8,
+      "timestamp": "2026-08-14T09:52:07.908Z",
+      "outcome": "succeeded",
+      "callId": "call_845EzK1YxttLzRMyz2foXM4c"
+    },
+    {
+      "number": 9,
+      "timestamp": "2026-08-14T11:38:24.421Z",
+      "outcome": "succeeded",
+      "callId": "call_8z63ITgL0T6PzGvy4twPL9KJ"
+    },
+    {
+      "number": 10,
+      "timestamp": "2026-08-14T11:39:50.508Z",
+      "outcome": "failed",
+      "callId": "call_6UxksaDXWX03Z3K5uC4ckhof"
+    },
+    {
+      "number": 11,
+      "timestamp": "2026-08-14T11:39:58.125Z",
+      "outcome": "failed",
+      "callId": "call_7FaOuNLYm0TqPYpOHTqfkqlw"
+    },
+    {
+      "number": 12,
+      "timestamp": "2026-08-14T11:40:09.171Z",
+      "outcome": "succeeded",
+      "callId": "call_8R8hN4wo86pWRw5A5oVyVDZP"
+    },
+    {
+      "number": 13,
+      "timestamp": "2026-08-14T14:49:38.007Z",
+      "outcome": "succeeded",
+      "callId": "call_3LBAzHkfJremVtQ2ATfiEJFd"
+    },
+    {
+      "number": 14,
+      "timestamp": "2026-08-14T14:50:50.193Z",
+      "outcome": "failed",
+      "callId": "call_ujh7V908erkAOd8bfxMm1ocZ"
+    },
+    {
+      "number": 15,
+      "timestamp": "2026-08-14T14:50:57.014Z",
+      "outcome": "succeeded",
+      "callId": "call_yw0IPOLxDhpLY2nmbX1byYKO"
+    },
+    {
+      "number": 16,
+      "timestamp": "2026-08-14T15:58:00.258Z",
+      "outcome": "failed",
+      "callId": "call_rsIEbYpCiDo7YEeZmNcL5ccU"
+    },
+    {
+      "number": 17,
+      "timestamp": "2026-08-14T15:58:06.675Z",
+      "outcome": "succeeded",
+      "callId": "call_B2BttKRk463db4XJEmEBJjm9"
+    },
+    {
+      "number": 18,
+      "timestamp": "2026-08-14T15:59:56.533Z",
+      "outcome": "succeeded",
+      "callId": "call_zJMkj0LKFq9OOLlTfdjGPQzh"
+    },
+    {
+      "number": 19,
+      "timestamp": "2026-08-14T16:03:05.438Z",
+      "outcome": "succeeded",
+      "callId": "call_xTVt22mawmTnzJ1FQ0rbWFfJ"
+    },
+    {
+      "number": 20,
+      "timestamp": "2026-08-15T13:31:34.537Z",
+      "outcome": "succeeded",
+      "callId": "call_bH9OwePyUY3fSnDYEFl80KDS"
+    },
+    {
+      "number": 21,
+      "timestamp": "2026-08-15T13:34:57.720Z",
+      "outcome": "succeeded",
+      "callId": "call_Tx3GFvCkHSbNAVfSw8fc88wH"
+    },
+    {
+      "number": 22,
+      "timestamp": "2026-08-15T14:03:18.884Z",
+      "outcome": "succeeded",
+      "callId": "call_PpA5P5hCZQF0dLHT8HQOBJfH"
+    },
+    {
+      "number": 23,
+      "timestamp": "2026-08-15T14:04:55.920Z",
+      "outcome": "succeeded",
+      "callId": "call_5FTJwUSwO1pBiCpsXCIDGFzs"
+    },
+    {
+      "number": 24,
+      "timestamp": "2026-08-15T14:19:16.755Z",
+      "outcome": "succeeded",
+      "callId": "call_diHYQpbOHGeM35oFdw9T9LUe"
+    },
+    {
+      "number": 25,
+      "timestamp": "2026-08-15T14:21:30.942Z",
+      "outcome": "succeeded",
+      "callId": "call_eKTT5DmbXIcM8af4qzVas6zA"
+    },
+    {
+      "number": 26,
+      "timestamp": "2026-08-15T14:27:38.602Z",
+      "outcome": "succeeded",
+      "callId": "call_3pNaRl5BbzHDXSc1ePdMnBH1"
+    },
+    {
+      "number": 27,
+      "timestamp": "2026-08-15T14:39:51.528Z",
+      "outcome": "failed",
+      "callId": "call_FfeUhkjdUgUfvf4tB6eN0OI6"
+    },
+    {
+      "number": 28,
+      "timestamp": "2026-08-15T14:39:58.556Z",
+      "outcome": "succeeded",
+      "callId": "call_TCjdjVfJ4c0Hc84OIkc3UXxm"
+    },
+    {
+      "number": 29,
+      "timestamp": "2026-08-15T14:42:00.308Z",
+      "outcome": "succeeded",
+      "callId": "call_O6gC9svSgK8kYuJU5m9V6oGj"
+    },
+    {
+      "number": 30,
+      "timestamp": "2026-08-15T15:16:45.740Z",
+      "outcome": "succeeded",
+      "callId": "call_iTRBVOTGEsc3LlJJyIuyZEO0"
+    },
+    {
+      "number": 31,
+      "timestamp": "2026-08-15T15:19:36.289Z",
+      "outcome": "succeeded",
+      "callId": "call_TYFzZ3ln6Iz15kCWm9HJr3kQ"
+    },
+    {
+      "number": 32,
+      "timestamp": "2026-08-15T15:23:50.756Z",
+      "outcome": "succeeded",
+      "callId": "call_br7MW8RdyFeByFlv77g4iQnX"
+    },
+    {
+      "number": 33,
+      "timestamp": "2026-08-15T15:24:52.244Z",
+      "outcome": "failed",
+      "callId": "call_8cCgTniTRjk27Cj7afHQFPQT"
+    },
+    {
+      "number": 34,
+      "timestamp": "2026-08-15T15:25:00.915Z",
+      "outcome": "succeeded",
+      "callId": "call_CH4aFyWhaVbeh1DeqG9yY9fo"
+    },
+    {
+      "number": 35,
+      "timestamp": "2026-08-15T17:23:46.196Z",
+      "outcome": "failed",
+      "callId": "call_1adoRAvP0Zbpils99Gcg6vnS"
+    },
+    {
+      "number": 36,
+      "timestamp": "2026-08-15T17:24:03.044Z",
+      "outcome": "succeeded",
+      "callId": "call_1TX21lLPCInA1aU1yJTUp2Mc"
+    },
+    {
+      "number": 37,
+      "timestamp": "2026-08-15T17:25:05.254Z",
+      "outcome": "succeeded",
+      "callId": "call_nmYtVltjgfN01IUuk095kq5W"
+    },
+    {
+      "number": 38,
+      "timestamp": "2026-08-15T17:27:50.545Z",
+      "outcome": "failed",
+      "callId": "call_iV40OFHA6eivgE55PS85KQwT"
+    },
+    {
+      "number": 39,
+      "timestamp": "2026-08-15T17:27:57.932Z",
+      "outcome": "succeeded",
+      "callId": "call_mmvNjLs95URK7gHYiB6wlO6D"
+    },
+    {
+      "number": 40,
+      "timestamp": "2026-08-15T17:29:47.772Z",
+      "outcome": "succeeded",
+      "callId": "call_CuJ34cp77nFJjdoAMxEyDug7"
+    },
+    {
+      "number": 41,
+      "timestamp": "2026-08-15T19:27:43.314Z",
+      "outcome": "succeeded",
+      "callId": "call_am1dbBfIbl4ucPYzTQ45Oy4i"
+    },
+    {
+      "number": 42,
+      "timestamp": "2026-08-15T20:03:11.184Z",
+      "outcome": "failed",
+      "callId": "call_HDwoyqjH6CoEX2j7QJFqdzzC"
+    },
+    {
+      "number": 43,
+      "timestamp": "2026-08-15T20:03:20.555Z",
+      "outcome": "succeeded",
+      "callId": "call_GM3NahW3e8Isi8oYHrZo4UdF"
+    },
+    {
+      "number": 44,
+      "timestamp": "2026-08-15T20:04:48.231Z",
+      "outcome": "succeeded",
+      "callId": "call_2xWHq5Ji1jTyv7WJTxQQqUKi"
+    },
+    {
+      "number": 45,
+      "timestamp": "2026-08-15T20:05:04.622Z",
+      "outcome": "succeeded",
+      "callId": "call_umPtJoYg1IL4dDSvF87mnlBp"
+    },
+    {
+      "number": 46,
+      "timestamp": "2026-08-16T06:31:44.496Z",
+      "outcome": "succeeded",
+      "callId": "call_lVFBnpYCVSYhxJgfFqKYq3Ae"
+    },
+    {
+      "number": 47,
+      "timestamp": "2026-08-16T08:15:42.873Z",
+      "outcome": "succeeded",
+      "callId": "call_97KHlULcZKxk0PqEWSnhah7z"
+    },
+    {
+      "number": 48,
+      "timestamp": "2026-08-17T05:57:36.153Z",
+      "outcome": "succeeded",
+      "callId": "call_apmX19fYD4H3iYZ2Grt28zHk"
+    },
+    {
+      "number": 49,
+      "timestamp": "2026-08-17T05:59:00.736Z",
+      "outcome": "failed",
+      "callId": "call_4jgZkMj3qXVzUaWo5PxWSa7r"
+    },
+    {
+      "number": 50,
+      "timestamp": "2026-08-17T05:59:08.385Z",
+      "outcome": "succeeded",
+      "callId": "call_wM0PURqeT8ufhC2brz7G6Quq"
+    },
+    {
+      "number": 51,
+      "timestamp": "2026-08-17T06:00:44.098Z",
+      "outcome": "succeeded",
+      "callId": "call_cmk5A69YGSvjq5esCnkXfstX"
+    },
+    {
+      "number": 52,
+      "timestamp": "2026-08-17T06:04:17.660Z",
+      "outcome": "succeeded",
+      "callId": "call_dmTW9SnIOqTctlvrPl5nNaEG"
+    },
+    {
+      "number": 53,
+      "timestamp": "2026-08-17T16:48:49.927Z",
+      "outcome": "succeeded",
+      "callId": "call_mP90J5of7I67xYObd9TUkB69"
+    },
+    {
+      "number": 54,
+      "timestamp": "2026-08-17T16:57:26.310Z",
+      "outcome": "succeeded",
+      "callId": "call_AqrzResBEPyS3Pn5sGulNQuZ"
+    },
+    {
+      "number": 55,
+      "timestamp": "2026-08-17T16:59:04.522Z",
+      "outcome": "failed",
+      "callId": "call_P8HzPIY39O2IZ8pNElEgI2GA"
+    },
+    {
+      "number": 56,
+      "timestamp": "2026-08-17T16:59:10.062Z",
+      "outcome": "succeeded",
+      "callId": "call_T3FDl5sHV8fPRXkU6ifWv5mA"
+    },
+    {
+      "number": 57,
+      "timestamp": "2026-08-17T17:03:29.402Z",
+      "outcome": "failed",
+      "callId": "call_wQ92S0JoeMJERGTf7GPpRpyt"
+    },
+    {
+      "number": 58,
+      "timestamp": "2026-08-17T17:03:34.600Z",
+      "outcome": "succeeded",
+      "callId": "call_376k4vdVmYQ0toOSVufftrCF"
+    },
+    {
+      "number": 59,
+      "timestamp": "2026-08-17T17:17:52.433Z",
+      "outcome": "failed",
+      "callId": "call_jNYodDdxg4ptXfKIwvKrgkx4"
+    },
+    {
+      "number": 60,
+      "timestamp": "2026-08-17T17:17:59.674Z",
+      "outcome": "succeeded",
+      "callId": "call_t8zeL6LypK066MlF0yhYawRk"
+    },
+    {
+      "number": 61,
+      "timestamp": "2026-08-17T17:20:58.050Z",
+      "outcome": "succeeded",
+      "callId": "call_00Gjvd7P43gJ8hpFHfvDwvS9"
+    },
+    {
+      "number": 62,
+      "timestamp": "2026-08-17T18:04:10.478Z",
+      "outcome": "failed",
+      "callId": "call_OpEYmpXoyaLyKDf3J6JOJhR8"
+    },
+    {
+      "number": 63,
+      "timestamp": "2026-08-17T18:04:15.990Z",
+      "outcome": "succeeded",
+      "callId": "call_9wB7Uay1JFO9u6msUtKlxVxc"
+    },
+    {
+      "number": 64,
+      "timestamp": "2026-08-17T18:27:57.399Z",
+      "outcome": "succeeded",
+      "callId": "call_V4UH9qXgMlN5hZVZg9DpzmRq"
+    },
+    {
+      "number": 65,
+      "timestamp": "2026-08-17T18:29:41.788Z",
+      "outcome": "succeeded",
+      "callId": "call_2oVmrL39VkerJgPR5a3KukYs"
+    },
+    {
+      "number": 66,
+      "timestamp": "2026-08-17T18:46:07.582Z",
+      "outcome": "succeeded",
+      "callId": "call_fciwRaKZuSLHdvY4SijxpaMD"
+    },
+    {
+      "number": 67,
+      "timestamp": "2026-08-17T18:57:30.243Z",
+      "outcome": "succeeded",
+      "callId": "call_jVqFQKyUwI1Ygjvz5L29pOSc"
+    },
+    {
+      "number": 68,
+      "timestamp": "2026-08-17T20:12:14.251Z",
+      "outcome": "succeeded",
+      "callId": "call_dVTEwA1ttKzutn9y5CdH9Ah9"
+    },
+    {
+      "number": 69,
+      "timestamp": "2026-08-18T15:31:44.659Z",
+      "outcome": "failed",
+      "callId": "call_Pt5EfABAQZAFxi4JGL8A6EPs"
+    },
+    {
+      "number": 70,
+      "timestamp": "2026-08-18T15:31:57.994Z",
+      "outcome": "succeeded",
+      "callId": "call_2cTcGGYykYrK5wT0enjruXv3"
+    },
+    {
+      "number": 71,
+      "timestamp": "2026-09-23T11:41:33.711Z",
+      "outcome": "succeeded",
+      "callId": "call_9npNwRi8JU6MyT1r7UQF8ZzA"
+    },
+    {
+      "number": 72,
+      "timestamp": "2026-09-23T11:44:38.358Z",
+      "outcome": "succeeded",
+      "callId": "call_ryaUSgHV9jUiq3wKDaDWmdfO"
+    },
+    {
+      "number": 73,
+      "timestamp": "2026-09-23T11:46:12.877Z",
+      "outcome": "succeeded",
+      "callId": "call_PDyfN2lurkEaTQzDFBYu2dek"
+    },
+    {
+      "number": 74,
+      "timestamp": "2026-09-23T11:58:24.489Z",
+      "outcome": "succeeded",
+      "callId": "call_4xJG7S03OyPnKTozI5sm7UzM"
+    },
+    {
+      "number": 75,
+      "timestamp": "2026-09-23T12:02:26.912Z",
+      "outcome": "succeeded",
+      "callId": "call_eydUFPZ3ZrAn04FN0v5gfZoE"
+    },
+    {
+      "number": 76,
+      "timestamp": "2026-09-23T12:04:27.761Z",
+      "outcome": "succeeded",
+      "callId": "call_YrbIO0qtO3KMCEdh1jRdF0ZL"
+    },
+    {
+      "number": 77,
+      "timestamp": "2026-09-23T12:19:55.766Z",
+      "outcome": "succeeded",
+      "callId": "call_81XKo5liYanKzSuSfFAJGHyf"
+    },
+    {
+      "number": 78,
+      "timestamp": "2026-09-23T12:22:34.882Z",
+      "outcome": "succeeded",
+      "callId": "call_S2bDiyW73SKQBnDnN7I3AYCv"
+    },
+    {
+      "number": 79,
+      "timestamp": "2026-09-23T12:24:44.391Z",
+      "outcome": "succeeded",
+      "callId": "call_BTABp61oX4D0bo5UcN3JNkts"
+    },
+    {
+      "number": 80,
+      "timestamp": "2026-09-25T19:27:45.236Z",
+      "outcome": "succeeded",
+      "callId": "call_mwfueOkXIRMan1BqsEzyO0A3"
+    },
+    {
+      "number": 81,
+      "timestamp": "2026-09-25T19:33:23.268Z",
+      "outcome": "succeeded",
+      "callId": "call_h2sSmEV7ClrzLhnT4M4g7Dp3"
+    },
+    {
+      "number": 82,
+      "timestamp": "2026-09-25T19:36:38.931Z",
+      "outcome": "succeeded",
+      "callId": "call_WoMJSGYdDzMKbswjTe3ErNJ9"
+    },
+    {
+      "number": 83,
+      "timestamp": "2026-11-03T08:22:53.232Z",
+      "outcome": "succeeded",
+      "callId": "call_70b1923325604ea4a4a68a587ca5f700"
+    },
+    {
+      "number": 84,
+      "timestamp": "2026-11-03T08:24:21.676Z",
+      "outcome": "failed",
+      "callId": "call_3441ca27218c4e41b9a7f157bec36b19"
+    },
+    {
+      "number": 85,
+      "timestamp": "2026-11-03T08:25:58.345Z",
+      "outcome": "succeeded",
+      "callId": "call_f898825c30154253bfd8058db51498fc"
+    },
+    {
+      "number": 86,
+      "timestamp": "2026-11-03T08:28:30.319Z",
+      "outcome": "succeeded",
+      "callId": "call_0e4aaef2c73b470f96a67b68c2e0a669"
+    },
+    {
+      "number": 87,
+      "timestamp": "2026-11-03T08:32:15.148Z",
+      "outcome": "succeeded",
+      "callId": "call_a646401be91049c2bdefda1a90868ecb"
+    },
+    {
+      "number": 88,
+      "timestamp": "2026-11-03T08:46:45.303Z",
+      "outcome": "failed",
+      "callId": "call_457ccc70271c4a75bb1eeeb565153c86"
+    },
+    {
+      "number": 89,
+      "timestamp": "2026-11-03T08:47:32.240Z",
+      "outcome": "succeeded",
+      "callId": "call_1d006ebaa6e74729b6bc226908e157ab"
+    },
+    {
+      "number": 90,
+      "timestamp": "2026-11-03T08:50:39.066Z",
+      "outcome": "succeeded",
+      "callId": "call_d6caa8c040a443ea85da0e25ed750b1a"
+    },
+    {
+      "number": 91,
+      "timestamp": "2026-11-03T08:53:00.259Z",
+      "outcome": "succeeded",
+      "callId": "call_bbcf73f5bdfe4486bfd4063f3001499c"
+    },
+    {
+      "number": 92,
+      "timestamp": "2026-11-03T08:54:34.616Z",
+      "outcome": "succeeded",
+      "callId": "call_0407f83b1efc4b6199c69d40bd98065f"
+    },
+    {
+      "number": 93,
+      "timestamp": "2026-11-03T08:55:42.848Z",
+      "outcome": "succeeded",
+      "callId": "call_046394309dab41949dbe195b6e24b54f"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 - Updated for the Sunstone Update while retaining existing enemy enhancements, settings, and the Elites menu.
 - Added Pony enhancements: armed-player priority, tongue flanking, obstacle removal, ceiling interception, and ceiling patrols before spotting a player.
 - Updated the required menu and configuration mods.
-- Added the Elites menu with enemy enhancement descriptions, host-controlled selection switches, display refresh, and bug-report tools.
+- Added the Elites menu with enemy enhancement descriptions, host-controlled selection switches, display refresh, and bug-report tools. Its appearance matches Roles, and it follows the game's language setting in all 21 languages.
 - Elites appears below Roles and Events when RoleShuffle or Stage Flux is installed.
 - Added GitHub Issues guidance for questions, bug reports, and feedback.
 - Increased the value of orbs dropped by defeated Enhanced enemies to 1.5 times their usual value.

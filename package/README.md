@@ -97,6 +97,8 @@ Orbs dropped by defeated Enhanced enemies are worth 1.5 times their usual value,
 
 Open **Elites** from the lobby or pause menu. When RoleShuffle or Stage Flux is also installed, the button appears beneath **Roles** and **Events**.
 
+The menu follows the game's language setting and supports all 21 languages, including every enemy's enhancement guide. Its appearance and fonts match the Roles menu.
+
 - **Enhancement Guide** explains each enemy's Enhanced behavior.
 - **Enemy Settings** lets the host turn enhancement selection on or off for each enemy. Changes apply to future draws; existing enemies and already selected encounters stay unchanged.
 - **Tools** shows whether host settings are available and lets you refresh the display.
@@ -232,10 +234,12 @@ Ponyを含む下記の30種の敵に対応しています。
 
 ロビーまたはポーズメニューの **Elites** から開きます。RoleShuffleやStage Fluxを同時導入している場合は、**Roles**・**Events** の下に配置されます。
 
-- **Enhancement Guide**：各敵の強化挙動を確認できます。
-- **Enemy Settings**：ホストが敵ごとに強化抽選のON/OFFを切り替えられます。変更は今後の抽選に適用され、既存の敵や抽選済みの遭遇は変更しません。
-- **Tools**：ホスト設定の表示状態を確認し、表示データを再取得できます。
-- **Report a Problem**：不具合レポートを作成・コピー・閲覧し、GitHub Issuesへ移動できます。再現手順を追記し、内容を確認してから投稿してください。個人情報は一部マスクされ、自動送信は行いません。
+メニューと各敵の強化説明は、本体の言語設定に合わせて全21言語で表示されます。見た目とフォントはRolesメニューに揃えています。
+
+- **強化ガイド**：各敵の強化挙動を確認できます。
+- **敵別設定**：ホストが敵ごとに強化抽選のON/OFFを切り替えられます。変更は今後の抽選に適用され、既存の敵や抽選済みの遭遇は変更しません。
+- **ツール**：ホスト設定の表示状態を確認し、表示データを再取得できます。
+- **不具合レポート**：不具合レポートを作成・コピー・閲覧し、GitHub Issuesへ移動できます。再現手順を追記し、内容を確認してから投稿してください。個人情報は一部マスクされ、自動送信は行いません。
 
 参加者もMODを導入すればメニューを閲覧できますが、敵設定を変更できるのはホストだけです。未導入の参加者にも強化挙動は適用されます。敵の位置や出現数は表示せず、常設HUDも追加しません。
 

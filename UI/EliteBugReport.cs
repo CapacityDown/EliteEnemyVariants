@@ -66,7 +66,7 @@ internal sealed class EliteBugReport : ILogListener
         string VersionField(string value)
         { string key = "EEVVERSION" + Guid.NewGuid().ToString("N"); versions[key] = value; return key; }
         StringBuilder report = new("# EliteEnemyVariants bug report\n\n## What happened? / 発生した問題\n\n## Steps to reproduce / 再現手順\n1. \n\n## Expected / actual result / 期待した結果と実際の結果\n\n## Environment\n");
-        report.AppendLine("EliteEnemyVariants: " + EliteEnemyVariantsPlugin.PluginVersion);
+        report.AppendLine("EliteEnemyVariants: " + VersionField(EliteBuild.Label));
         report.AppendLine("Game: " + VersionField(Application.version) + "\nUnity: " + VersionField(Application.unityVersion));
         report.AppendLine("OS: " + SystemInfo.operatingSystem + $"\nResolution: {Screen.width} x {Screen.height}");
         report.AppendLine("Scene: " + SceneManager.GetActiveScene().name + "\nDisplay: " + state.Status);

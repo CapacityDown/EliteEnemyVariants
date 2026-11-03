@@ -1,0 +1,2 @@
+# The build log combines task output and MSBuild output; normalize its line endings in Git.
+build/attempts.tsv text eol=lf

@@ -27,6 +27,7 @@ try {
         @{ Project = 'checks\Menu\Menu.Checks.csproj'; Arguments = @($dll, $gameDll) },
         @{ Project = 'checks\Tactics\Tactics.Checks.csproj'; Arguments = @($gameDll, $dll) },
         @{ Project = 'checks\Pony\Pony.Checks.csproj'; Arguments = @($gameDll, $dll) },
+        @{ Project = 'checks\Localization\Localization.Checks.csproj'; Arguments = @($dll, $PSScriptRoot, $managed) },
         @{ Project = 'checks\OrbRewards\OrbRewards.Checks.csproj'; Arguments = @($gameDll) }
     )
     foreach ($suite in $suites) {
@@ -41,7 +42,8 @@ try {
     }
     Copy-Item -LiteralPath $dll -Destination 'package\EliteEnemyVariants.dll'
     $entries = @('README.md','CHANGELOG.md','icon.png','manifest.json','EliteEnemyVariants.dll')
-    $files = @($entries | ForEach-Object { Join-Path $PSScriptRoot "package\$_" })
+    $entries += @('LICENSES/NotoCJK-OFL.txt','LICENSES/NotoSans-OFL.txt')
+    $files = @('README.md','CHANGELOG.md','icon.png','manifest.json','EliteEnemyVariants.dll','LICENSES' | ForEach-Object { Join-Path $PSScriptRoot "package\$_" })
     $zipPath = Join-Path $PSScriptRoot 'EliteEnemyVariants.zip'
     Compress-Archive -LiteralPath $files -DestinationPath $zipPath -Force
     $expectedHash = (Get-FileHash -LiteralPath $dll -Algorithm SHA256).Hash
@@ -50,8 +52,9 @@ try {
     }
     $zip = [IO.Compression.ZipFile]::OpenRead($zipPath)
     try {
-        if (@(Compare-Object ($entries | Sort-Object) ($zip.Entries.FullName | Sort-Object)).Count) { throw 'ZIP entry list differs.' }
-        foreach ($entry in $zip.Entries) {
+        $zipFiles = @($zip.Entries | Where-Object { -not $_.FullName.EndsWith('/') })
+        if (@(Compare-Object ($entries | Sort-Object) ($zipFiles.FullName.Replace('\','/') | Sort-Object)).Count) { throw 'ZIP entry list differs.' }
+        foreach ($entry in $zipFiles) {
             $stream = $entry.Open()
             $sha = [Security.Cryptography.SHA256]::Create()
             try { $hash = [BitConverter]::ToString($sha.ComputeHash($stream)).Replace('-', '') }

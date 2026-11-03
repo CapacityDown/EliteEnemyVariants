@@ -1,0 +1,7 @@
+<Project DefaultTargets="Build">
+  <Import Project="../../build/BuildNumber.targets" />
+  <Target Name="PrepareForBuild" />
+  <Target Name="Build" DependsOnTargets="PrepareForBuild">
+    <Error Condition="'$(EevTestFail)' == 'true'" Text="Intentional fixture failure after number allocation." />
+  </Target>
+</Project>
