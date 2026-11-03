@@ -38,7 +38,7 @@ try {
     $manifest = Get-Content -LiteralPath 'package\manifest.json' -Raw | ConvertFrom-Json
     $assemblyVersion = [Reflection.AssemblyName]::GetAssemblyName($dll).Version
     if ($assemblyVersion.ToString(3) -ne $manifest.version_number) { throw 'DLL/manifest versions differ.' }
-    if ((Get-Content -LiteralPath 'package\CHANGELOG.md' -TotalCount 1) -ne "## v$($manifest.version_number)") {
+    if ((Get-Content -LiteralPath 'package\CHANGELOG.md' -TotalCount 1) -ne "## $($manifest.version_number)") {
         throw 'Changelog version differs.'
     }
     Copy-Item -LiteralPath $dll -Destination 'package\EliteEnemyVariants.dll'

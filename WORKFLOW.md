@@ -56,3 +56,22 @@ outputs, ZIPs, temporary files, and deployment backups using `.gitignore`.
 Keep development instructions separate from player-facing README and CHANGELOG
 files. Do not add Git workflow details or same-version development history to
 those release documents.
+
+## Release-document conventions
+
+Follow RoleShuffle's player-facing changelog style: English only, newest release
+first, headings such as `## 5.0.0` without a leading `v`, and the first bullet
+immediately below the heading. Separate releases with one blank line. Use concise
+action-led statements describing final changes from the previous published release;
+keep distinct changes separate and summarize related feature details together.
+Preserve published history and keep `4.0.0` limited to `- First Release`.
+Do not add within-version development history, document-edit entries, technical
+implementation details, test commands, build numbers, or compatibility version
+numbers. Refer to the Sunstone Update without a numeric game version in
+compatibility explanations.
+
+Deliver release archives only as `EliteEnemyVariants.zip`. Preserve previous
+archives in backup directories with that same basename; do not create a
+version-suffixed delivery filename. For documentation-only changes, reuse the
+verified Release DLL, update the package and EEV_TEST documentation, and verify
+every ZIP entry against its package source without incrementing the build number.
