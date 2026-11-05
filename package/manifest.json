@@ -5,7 +5,7 @@
   "description": "【HostOnlyMOD】Enhances enemy behavior and abilities with host-only installation. ホストのみの導入で、敵の挙動や能力を強化します。",
   "dependencies": [
     "BepInEx-BepInExPack-5.4.2305",
-    "REPOModding-MenuLib-2.6.0",
+    "REPOModding-MenuLib-2.6.2",
     "REPOModding-REPOConfig-1.2.7"
   ]
 }
