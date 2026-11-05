@@ -117,6 +117,7 @@ Check(PluginGuid(config) == "nickklmao.repoconfig", "moved REPOConfig retains ru
 var rugrat = ModType("RugratElitePatches").Methods.Single(m => m.Name == "StateGetValuablePostfix");
 Check(rugrat.Body.Instructions.Any(i => i.Operand is FieldReference f && f.Name == "volumeType"), "Rugrat respects native pickup size limit");
 Check(rugrat.Body.Instructions.Any(i => i.Operand is FieldReference f && f.Name == "currentState"), "Rugrat waits for native pickup selection");
+Game051Contracts.Verify(game, mod, Check);
 
 if (args.Length >= 5)
 {

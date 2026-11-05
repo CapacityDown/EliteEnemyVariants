@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <Target Name="RequireInstalledGame" BeforeTargets="ResolveAssemblyReferences">
-    <Error Condition="!Exists('$(GameManagedDir)\Assembly-CSharp.dll')" Text="Set RepoGamePath (-p:RepoGamePath=... or Directory.Repo.props) to the R.E.P.O. v0.5.0 installation." />
+    <Error Condition="!Exists('$(GameManagedDir)\Assembly-CSharp.dll')" Text="Set RepoGamePath (-p:RepoGamePath=... or Directory.Repo.props) to the R.E.P.O. v0.5.1 installation." />
   </Target>
 
   <Import Project="build/BuildNumber.targets" />

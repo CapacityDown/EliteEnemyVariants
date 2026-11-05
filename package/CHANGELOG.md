@@ -1,3 +1,6 @@
+## 5.0.1
+- Updated compatibility for R.E.P.O. v0.5.1.
+
 ## 5.0.0
 - Updated compatibility for R.E.P.O. v0.5.0.
 - Added Pony enhancements: armed-player priority, tongue flanking, obstacle removal, ceiling interception and ceiling patrols before spotting a player. Can grab, lift and fling reachable players from the ceiling, releasing them if there is no clear throwing space.

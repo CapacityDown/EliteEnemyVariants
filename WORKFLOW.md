@@ -10,6 +10,8 @@ instructions, not player-facing release documentation.
 - Integration branch: `main`.
 - Current development version: `5.0.1`.
 - Current development branch: `version/5.0.1`.
+- Current game compatibility target: R.E.P.O. `0.5.1`; compile and run the
+  compatibility checks against the installed game's managed assemblies.
 - Keep the existing HTTPS remote and configured Git Credential Manager
   authentication. Do not copy tokens, extract credentials, or change global
   authentication settings.
@@ -75,9 +77,9 @@ keep distinct changes separate and summarize related feature details together.
 Preserve published history and keep `4.0.0` limited to `- First Release`.
 Do not add within-version development history, document-edit entries, technical
 implementation details, test commands, or build numbers. Keep compatibility
-version numbers out of release explanations except for the user's explicitly
-approved first item under `5.0.0`:
-`- Updated compatibility for R.E.P.O. v0.5.0.`
+version numbers out of release explanations except for game compatibility updates,
+following the user's approved wording: `- Updated compatibility for R.E.P.O. v0.5.0.`
+Use the newly supported game version for subsequent game compatibility updates.
 Do not add version numbers to Stage Flux or RoleShuffle compatibility explanations.
 
 Deliver release archives only as `EliteEnemyVariants.zip`. Preserve previous
